@@ -32,7 +32,7 @@ export const site = {
     stats: [
       { label: "Chess.com rating", value: "1150" },
       { label: "Lichess rating", value: "1500" },
-      { label: "Tournaments played", value: "30" },
+      { label: "Tournaments played", value: "30+" },
       { label: "Best win (rated)", value: "1800" },
     ],
   },
