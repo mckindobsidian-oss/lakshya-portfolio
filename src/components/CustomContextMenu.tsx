@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
+import { images } from "../assets/images";
 import { site } from "../content";
 
 type MenuState = { x: number; y: number } | null;
@@ -129,7 +130,7 @@ export default function CustomContextMenu() {
           {/* header */}
           <div className="flex items-center gap-2.5 rounded-xl bg-surface px-3 py-2.5">
             <img
-              src="/src/assets/logo.png"
+              src={images.logo}
               alt=""
               className="h-8 w-8 shrink-0 rounded-md object-cover"
             />

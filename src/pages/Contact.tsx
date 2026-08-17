@@ -9,6 +9,7 @@ import {
   MailIcon,
   YouTubeBrandIcon,
 } from "../components/Icons";
+import { images } from "../assets/images";
 import { site } from "../content";
 
 const channels = [
@@ -47,7 +48,7 @@ const channels = [
   {
     icon: (
       <img
-        src="/src/assets/photos/chesscom-logo.png"
+        src={images.chesscomLogo}
         alt=""
         className="h-5 w-5 object-contain"
       />

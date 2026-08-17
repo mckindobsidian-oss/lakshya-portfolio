@@ -193,20 +193,20 @@ export default function About() {
           <Reveal delay={100}>
             <div
               ref={trackRef}
-              className="mt-10 flex gap-5 overflow-x-auto pb-2 [scrollbar-width:none]"
+              className="mt-10 flex gap-5 overflow-x-auto py-3 [scrollbar-width:none]"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
               {achievements.map((a, i) => (
                 <figure
                   key={a.title}
-                  className="float-card w-[min(84vw,340px)] shrink-0 overflow-hidden rounded-2xl border border-line bg-surface"
+                  className="float-card group w-[min(84vw,340px)] shrink-0 overflow-hidden rounded-2xl border border-line bg-surface"
                   style={{ animationDelay: `${(i % 3) * 0.6}s` }}
                 >
                   <div className="overflow-hidden">
                     <img
                       src={a.photo}
                       alt={a.title}
-                      className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-105"
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
                     />
                   </div>

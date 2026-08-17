@@ -3,6 +3,8 @@
 //  Anything marked TODO is a placeholder: replace it with your real info.
 // ============================================================================
 
+import { images } from "./assets/images";
+
 export const site = {
   name: "Lakshya Gupta",
   heroSub:
@@ -53,41 +55,41 @@ export const achievements = [
     tag: "Nationals · 2025",
     detail:
       "Placed 9th at the CBSE Nationals 2025 — my first time on the national stage, facing the best young players from across India.",
-    photo: "/src/assets/photos/cbse-nationals.jpg",
+    photo: images.cbse,
   },
   {
     title: "Haryana State",
     tag: "State · 2023",
     detail:
       "Runner-up at the Haryana State Championship 2023 — 2nd place among the strongest players my state has to offer.",
-    photo: "/src/assets/photos/haryana-state.jpg",
+    photo: images.haryana,
   },
   {
     title: "Chess badge",
     tag: "FIDE rated",
     detail: "A badge from a FIDE-rated tournament — stepping into official rated chess for the first time.",
-    photo: "/src/assets/photos/chess-badge.jpg",
+    photo: images.chessBadge,
   },
   {
     title: "Lakshya Gupta badge",
     tag: "Delhi",
     detail:
       "My first FIDE-rated tournament, in Delhi — the badge that marks where the serious chess began.",
-    photo: "/src/assets/photos/badge.jpg",
+    photo: images.badge,
   },
   {
     title: "The website",
     tag: "First code",
     detail:
       "My first self-coded website — this very portfolio, built line by line from a blank page.",
-    photo: "/src/assets/photos/website.jpg",
+    photo: images.website,
   },
   {
     title: "Life Beyond Earth",
     tag: "Book · briBooks",
     detail:
       "Certificate for writing my first book, Life Beyond Earth — published on briBooks, written for dreamers who stare at the night sky.",
-    photo: "/src/assets/photos/book-cert.jpg",
+    photo: images.bookCert,
   },
 ];
 
@@ -109,7 +111,7 @@ export const creations = [
     detail:
       "My first book, published on briBooks — a journey into what lies beyond our planet, written for dreamers who stare at the night sky.",
     href: "https://www.bribooks.com/bookstore/life-beyond-earth-by-lakshya-gupta/",
-    cover: "/src/assets/photos/book-cover.jpg",
+    cover: images.bookCover,
   },
 ];
 

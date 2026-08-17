@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import { images } from "../assets/images";
 import { site } from "../content";
 
 const tabs = [
@@ -45,7 +46,7 @@ export default function Navbar() {
       <nav className="relative mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
         <Link to="/" onClick={() => { close(); scrollTop(); }} className="flex items-center gap-2.5">
           <img
-            src="/src/assets/logo.png"
+            src={images.logo}
             alt="LG logo"
             className="h-9 w-9 rounded-lg object-cover ring-1 ring-line"
           />
