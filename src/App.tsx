@@ -2,10 +2,14 @@ import { useEffect } from "react";
 import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 
+import { AnimatePresence } from "framer-motion";
+
+import AmbientBackground from "./components/AmbientBackground";
 import CustomContextMenu from "./components/CustomContextMenu";
 import CustomCursor from "./components/CustomCursor";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import PageTransition from "./components/PageTransition";
 import Preloader from "./components/Preloader";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -46,7 +50,8 @@ const titles: Record<string, string> = {
 };
 
 function Layout() {
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const { pathname } = location;
 
   // reset scroll on every page change + set the tab title
   useEffect(() => {
@@ -58,18 +63,21 @@ function Layout() {
   const hideFooter = pathname.startsWith("/gallery");
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="relative flex min-h-screen flex-col">
+      <AmbientBackground />
       <Navbar />
-      <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/creations" element={<Creations />} />
-          <Route path="/youtube" element={<YouTube />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
+      <main className="relative z-10 flex-1">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={pathname}>
+            <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+            <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+            <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+            <Route path="/gallery" element={<PageTransition><Gallery /></PageTransition>} />
+            <Route path="/creations" element={<PageTransition><Creations /></PageTransition>} />
+            <Route path="/youtube" element={<PageTransition><YouTube /></PageTransition>} />
+            <Route path="*" element={<PageTransition><Home /></PageTransition>} />
+          </Routes>
+        </AnimatePresence>
       </main>
       {!hideFooter && <Footer />}
     </div>

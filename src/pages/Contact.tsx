@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import Reveal from "../components/Reveal";
 import {
@@ -19,7 +20,7 @@ const channels = [
     sub: "lakshyagupta652@gmail.com",
     href: `mailto:${site.links.email}`,
     external: false,
-    color: "#141414",
+    copyValue: site.links.email,
   },
   {
     icon: <DiscordIcon className="h-5 w-5" />,
@@ -27,7 +28,7 @@ const channels = [
     sub: "mossmirage_",
     href: site.links.discord,
     external: true,
-    color: "#5865F2",
+    copyValue: "mossmirage_",
   },
   {
     icon: <InstagramBrandIcon className="h-5 w-5" />,
@@ -35,7 +36,6 @@ const channels = [
     sub: "its.montague",
     href: site.links.instagram,
     external: true,
-    color: "#E1306C",
   },
   {
     icon: <YouTubeBrandIcon className="h-5 w-5" />,
@@ -43,7 +43,6 @@ const channels = [
     sub: site.youtube.handle,
     href: site.links.youtube,
     external: true,
-    color: "#FF0000",
   },
   {
     icon: (
@@ -57,7 +56,6 @@ const channels = [
     sub: "lakshya_gupta_vic",
     href: site.links.chesscom,
     external: true,
-    color: "#7FA650",
   },
   {
     icon: <LichessIcon className="h-5 w-5" />,
@@ -65,12 +63,11 @@ const channels = [
     sub: "lakshyagupta15",
     href: site.links.lichess,
     external: true,
-    color: "#2b2b2b",
   },
 ];
 
 const inputCls =
-  "w-full rounded-xl border border-white/15 bg-white px-4 py-3 text-sm text-ink placeholder:text-soft/60 outline-none transition-colors focus:border-[#b1e533]";
+  "w-full rounded-2xl border border-line bg-white px-4 py-3.5 text-sm text-ink placeholder:text-soft outline-none transition-all focus:border-ink focus:ring-2 focus:ring-accent/40";
 
 type FormStatus = "idle" | "sending" | "sent" | "error";
 
@@ -79,8 +76,19 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // sends the message straight to Web3Forms, which emails it to you
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 2200);
+  };
+
+  const handleCopy = (value: string, label: string) => {
+    navigator.clipboard.writeText(value);
+    showToast(`Copied ${label} to clipboard!`);
+  };
+
+  // sends the message straight to Web3Forms
   const sendEmail = async (e: FormEvent) => {
     e.preventDefault();
     setStatus("sending");
@@ -114,6 +122,21 @@ export default function Contact() {
 
   return (
     <>
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-2xl bg-black px-4 py-2.5 text-xs font-semibold text-white shadow-2xl backdrop-blur-md border border-white/10"
+          >
+            <CheckIcon className="h-4 w-4 text-accent" />
+            <span>{toastMessage}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ---------- STATEMENT HERO ---------- */}
       <section className="border-b border-line">
         <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
@@ -121,15 +144,16 @@ export default function Contact() {
             <p className="eyebrow">Contact</p>
             <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold tracking-tight text-ink sm:text-6xl sm:leading-[1.05]">
               Let's talk.{" "}
-              <span className="bg-accent px-2 text-ink">Or play a game.</span>
+              <span className="rounded-2xl border border-ink/20 bg-accent px-3.5 py-1 text-ink shadow-2xs">
+                Or play a game.
+              </span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-soft">
-              Chess challenge, a collab, or just to say hi — I read everything. Reach me however
-              you like, but Discord and email get the fastest answer.
+              Chess challenges, collaboration ideas, or just saying hi — I read everything. Reach me however you like; Discord and email get the quickest reply.
             </p>
           </Reveal>
 
-          {/* one of each, no duplicates */}
+          {/* Direct quick channel pills (still, solid) */}
           <Reveal delay={120}>
             <div className="mt-10 flex flex-wrap gap-3">
               {channels.map((c) => (
@@ -138,16 +162,12 @@ export default function Contact() {
                   href={c.href}
                   target={c.external ? "_blank" : undefined}
                   rel={c.external ? "noreferrer" : undefined}
-                  className="group inline-flex items-center gap-2.5 rounded-full border border-line bg-surface py-2.5 pl-3.5 pr-5 text-sm font-medium text-ink transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                  style={{ ["--brand" as string]: c.color }}
+                  className="group inline-flex items-center gap-2.5 rounded-full border border-line bg-surface py-2.5 pl-3.5 pr-5 text-sm font-medium text-ink shadow-2xs transition-colors duration-200 hover:border-accent hover:bg-white"
                 >
-                  <span
-                    className="flex h-8 w-8 items-center justify-center rounded-full transition-transform duration-200 group-hover:scale-125"
-                    style={{ color: c.color }}
-                  >
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-ink shadow-xs transition-colors duration-200 group-hover:bg-accent">
                     {c.icon}
                   </span>
-                  {c.title}
+                  <span>{c.title}</span>
                 </a>
               ))}
             </div>
@@ -155,58 +175,69 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ---------- EMAIL FORM (lime panel + Web3Forms) ---------- */}
+      {/* ---------- EMAIL FORM (Black & Neon Panel + Web3Forms) ---------- */}
       <section className="border-b border-line">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
-          <div className="grid gap-4 lg:grid-cols-[1fr_1.3fr]">
+          <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
             <Reveal>
-              <div className="flex h-full flex-col justify-between rounded-3xl bg-accent p-8 sm:p-10">
+              <div className="flex h-full flex-col justify-between rounded-3xl bg-black p-8 text-white shadow-xl border border-white/10 sm:p-10 transition-colors hover:border-accent/40">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/70">
-                    Email me
-                  </p>
-                  <h2 className="mt-6 font-serif text-3xl leading-snug text-ink sm:text-4xl">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                      Email me
+                    </p>
+                    <span className="text-accent text-base">✦</span>
+                  </div>
+                  <h2 className="mt-6 font-serif text-3xl leading-snug text-white sm:text-4xl">
                     One message away.
                   </h2>
-                  <p className="mt-5 leading-relaxed text-ink/75">
+                  <p className="mt-5 leading-relaxed text-white/70">
                     Write a few lines and they'll land straight in my inbox. No forms lost in
-                    space — I actually reply.
+                    space — I actually read and reply.
                   </p>
                 </div>
-                <a
-                  href={`mailto:${site.links.email}`}
-                  className="mt-10 break-all text-sm font-semibold text-ink underline underline-offset-4 transition-opacity hover:opacity-70"
-                >
-                  {site.links.email}
-                </a>
+                <div className="mt-10">
+                  <button
+                    type="button"
+                    onClick={() => handleCopy(site.links.email, "Email")}
+                    className="group inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-accent hover:text-black hover:border-accent"
+                  >
+                    <span>{site.links.email}</span>
+                    <span className="text-xs opacity-80 group-hover:opacity-100">📋 Copy</span>
+                  </button>
+                </div>
               </div>
             </Reveal>
 
             <Reveal delay={100}>
               {status === "sent" ? (
                 /* success — message delivered */
-                <div className="flex h-full flex-col items-center justify-center rounded-3xl bg-accent p-8 text-center sm:p-10">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-ink text-paper">
-                    <CheckIcon className="h-6 w-6" />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex h-full flex-col items-center justify-center rounded-3xl bg-white p-8 text-center border border-line shadow-sm sm:p-10"
+                >
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-accent text-ink shadow-md">
+                    <CheckIcon className="h-8 w-8" />
                   </span>
-                  <h3 className="mt-6 font-display text-2xl font-semibold tracking-tight text-ink">
+                  <h3 className="mt-6 font-display text-2xl font-bold tracking-tight text-ink">
                     Message sent!
                   </h3>
-                  <p className="mt-3 max-w-sm leading-relaxed text-ink/75">
-                    Thanks for reaching out — I'll get back to you soon.
+                  <p className="mt-3 max-w-sm leading-relaxed text-soft">
+                    Thanks for reaching out — I'll get back to you as soon as possible.
                   </p>
                   <button
                     type="button"
                     onClick={() => setStatus("idle")}
-                    className="mt-8 rounded-full border border-ink/30 px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-paper"
+                    className="mt-8 rounded-full border border-ink/30 px-6 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-black hover:text-white"
                   >
                     Send another message
                   </button>
-                </div>
+                </motion.div>
               ) : (
                 <form
                   onSubmit={sendEmail}
-                  className="flex h-full flex-col gap-5 rounded-3xl border border-line bg-surface p-8 sm:p-10"
+                  className="flex h-full flex-col gap-5 rounded-3xl border border-line bg-white p-8 shadow-xs sm:p-10"
                 >
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
@@ -244,7 +275,7 @@ export default function Contact() {
                     <textarea
                       id="cf-message"
                       required
-                      rows={6}
+                      rows={5}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Want a game? A collab? Or just to say hi?"
@@ -252,12 +283,17 @@ export default function Contact() {
                     />
                   </div>
                   <div className="flex flex-wrap items-center gap-4">
-                    <button type="submit" disabled={status === "sending"} className="btn-primary">
+                    <button
+                      type="submit"
+                      disabled={status === "sending"}
+                      className="btn-primary"
+                    >
                       <MailIcon className="h-4 w-4" />
-                      {status === "sending" ? "Sending…" : "Send message"}
+                      <span>{status === "sending" ? "Sending…" : "Send message"}</span>
                     </button>
+
                     {status === "error" && (
-                      <p className="text-xs font-medium text-[#b3452f]">
+                      <p className="text-xs font-medium text-red-600">
                         Something went wrong — please try again.
                       </p>
                     )}
@@ -269,7 +305,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ---------- CHANNELS (brand-colored cards) ---------- */}
+      {/* ---------- CHANNELS (Pure Black & Neon Green) ---------- */}
       <section>
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
@@ -277,36 +313,25 @@ export default function Contact() {
             <h2 className="h2">Pick your platform</h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {channels.map((c, i) => (
-              <Reveal key={c.title} delay={i * 60}>
+              <Reveal key={c.title} delay={i * 50}>
                 <a
                   href={c.href}
                   target={c.external ? "_blank" : undefined}
                   rel={c.external ? "noreferrer" : undefined}
-                  className="group flex h-full flex-col justify-between rounded-2xl border border-line bg-surface p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-                  style={{ ["--brand" as string]: c.color }}
+                  className="group flex h-full flex-col justify-between rounded-3xl border border-line bg-white p-6 shadow-2xs transition-all duration-200 hover:border-accent hover:shadow-md"
                 >
                   <div className="flex items-center justify-between">
-                    <span
-                      className="flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-200 group-hover:scale-125"
-                      style={{ color: c.color, backgroundColor: `${c.color}14` }}
-                    >
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-ink transition-colors duration-200 group-hover:bg-accent">
                       {c.icon}
                     </span>
-                    <span
-                      className="h-2 w-2 rounded-full opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-                      style={{ backgroundColor: c.color }}
-                    />
+                    <span className="text-xs font-mono text-soft group-hover:text-ink">↗</span>
                   </div>
-                  <div className="mt-10">
-                    <h3 className="font-display text-lg font-semibold">{c.title}</h3>
+                  <div className="mt-8">
+                    <h3 className="font-display text-lg font-bold text-ink">{c.title}</h3>
                     <p className="mt-1 truncate text-sm text-soft">{c.sub}</p>
                   </div>
-                  <span
-                    className="mt-6 block h-0.5 w-0 rounded-full transition-all duration-300 group-hover:w-full"
-                    style={{ backgroundColor: c.color }}
-                  />
                 </a>
               </Reveal>
             ))}
@@ -320,7 +345,7 @@ export default function Contact() {
                 href={site.links.chesscom}
                 target="_blank"
                 rel="noreferrer"
-                className="font-medium text-brown underline underline-offset-4 hover:text-ink"
+                className="font-semibold text-ink underline underline-offset-4 hover:text-accent"
               >
                 chess.com/lakshya_gupta_vic
               </a>

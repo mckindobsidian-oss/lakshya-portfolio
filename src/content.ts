@@ -93,15 +93,57 @@ export const achievements = [
   },
 ];
 
-// ---- GALLERY (scroll dive) -------------------------------------------------
-// Photos coming soon — drop them into src/assets/photos/ and add entries here,
-// e.g. { title, tag, description, photo: "/src/assets/photos/my-photo.jpg" }.
-export const gallery: {
-  title: string;
-  tag: string;
-  description: string;
-  photo: string;
-}[] = [];
+// ---- GALLERY (scroll dive & photo showcase) -------------------------------
+export const gallery = [
+  {
+    title: "CBSE Nationals 2025",
+    tag: "Chess · Nationals",
+    category: "Chess",
+    description:
+      "Secured 9th place at the CBSE National Championship — competing against the top juniors across India.",
+    photo: images.cbse,
+  },
+  {
+    title: "Haryana State Runner-Up",
+    tag: "Chess · State",
+    category: "Chess",
+    description:
+      "2nd place finish at the Haryana State Chess Championship 2023 — a pivotal milestone in my competitive journey.",
+    photo: images.haryana,
+  },
+  {
+    title: "Official FIDE Rating Badge",
+    tag: "FIDE · Rated",
+    category: "Milestones",
+    description:
+      "Badge earned from my official FIDE-rated chess tournament participation, beginning the road to International Master.",
+    photo: images.chessBadge,
+  },
+  {
+    title: "Delhi FIDE Tournament",
+    tag: "Tournament · Delhi",
+    category: "Milestones",
+    description:
+      "Official tournament badge from Delhi — where intense over-the-board competition tested my preparation.",
+    photo: images.badge,
+  },
+  {
+    title: "Life Beyond Earth Certificate",
+    tag: "Book · briBooks",
+    category: "Creations",
+    description:
+      "Official publication certificate for authoring 'Life Beyond Earth', published through briBooks.",
+    photo: images.bookCert,
+  },
+  {
+    title: "First Portfolio Code",
+    tag: "Code · Milestone",
+    category: "Creations",
+    description:
+      "Building this portfolio from scratch in React & TypeScript — my personal developer and creator hub.",
+    photo: images.website,
+  },
+];
 
 // ---- MY CREATIONS ----------------------------------------------------------
 export const creations = [

@@ -24,35 +24,48 @@ export default function CustomCursor() {
     let my = -100;
     let rx = -100;
     let ry = -100;
+    let isVisible = false;
     let raf = 0;
 
     const onMove = (e: MouseEvent) => {
       mx = e.clientX;
       my = e.clientY;
+      if (!isVisible) {
+        isVisible = true;
+        dot.style.opacity = "1";
+        ring.style.opacity = "1";
+      }
     };
 
     const onOver = (e: MouseEvent) => {
       const t = e.target as HTMLElement | null;
       const interactive =
-        !!t && !!t.closest("a, button, input, textarea, select, label, [role='menuitem']");
+        !!t && !!t.closest("a, button, input, textarea, select, label, [role='menuitem'], [data-cursor-interactive]");
       ring.classList.toggle("is-hover", interactive);
     };
 
     const onDown = () => ring.classList.add("is-down");
     const onUp = () => ring.classList.remove("is-down");
 
+    const onLeave = () => {
+      isVisible = false;
+      dot.style.opacity = "0";
+      ring.style.opacity = "0";
+    };
+
     const loop = () => {
-      rx += (mx - rx) * 0.16;
-      ry += (my - ry) * 0.16;
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
       dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
       ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
       raf = requestAnimationFrame(loop);
     };
 
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseover", onOver);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("mouseover", onOver, { passive: true });
     window.addEventListener("mousedown", onDown);
     window.addEventListener("mouseup", onUp);
+    document.documentElement.addEventListener("mouseleave", onLeave);
     raf = requestAnimationFrame(loop);
 
     return () => {
@@ -60,6 +73,7 @@ export default function CustomCursor() {
       window.removeEventListener("mouseover", onOver);
       window.removeEventListener("mousedown", onDown);
       window.removeEventListener("mouseup", onUp);
+      document.documentElement.removeEventListener("mouseleave", onLeave);
       cancelAnimationFrame(raf);
       document.documentElement.classList.remove("has-custom-cursor");
       dot.remove();
