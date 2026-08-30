@@ -16,6 +16,7 @@ import Contact from "./pages/Contact";
 import Creations from "./pages/Creations";
 import Gallery from "./pages/Gallery";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 import YouTube from "./pages/YouTube";
 
 /* buttery smooth scrolling across the whole site */
@@ -41,7 +42,7 @@ function SmoothScroll() {
 
 /* per-tab browser titles */
 const titles: Record<string, string> = {
-  "/": "Lakshya Gupta — Chess, Minecraft & Code",
+  "/": "Lakshya Gupta Portfolio",
   "/about": "About — Lakshya Gupta",
   "/gallery": "Gallery — Lakshya Gupta",
   "/youtube": "Blockwise — Lakshya Gupta",
@@ -56,7 +57,7 @@ function Layout() {
   // reset scroll on every page change + set the tab title
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = titles[pathname] ?? titles["/"];
+    document.title = titles[pathname] ?? "404 — Page Not Found — Lakshya Gupta";
   }, [pathname]);
 
   // the gallery is full-bleed — no footer there
@@ -75,7 +76,7 @@ function Layout() {
             <Route path="/gallery" element={<PageTransition><Gallery /></PageTransition>} />
             <Route path="/creations" element={<PageTransition><Creations /></PageTransition>} />
             <Route path="/youtube" element={<PageTransition><YouTube /></PageTransition>} />
-            <Route path="*" element={<PageTransition><Home /></PageTransition>} />
+            <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
           </Routes>
         </AnimatePresence>
       </main>

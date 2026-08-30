@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Page Not Found — Lakshya Gupta</title>
+    <script>
+      // Single Page App redirect for GitHub Pages HashRouter
+      (function () {
+        var path = window.location.pathname;
+        var repo = "/lakshya-portfolio";
+        var subPath = path.startsWith(repo) ? path.substring(repo.length) : path;
+        var search = window.location.search || "";
+        var hash = window.location.hash || "";
+        // Redirect to HashRouter path so the React App renders the 404 page properly
+        window.location.replace(repo + "/#" + subPath + search + hash);
+      })();
+    </script>
+  </head>
+  <body style="background-color: #ffffff; margin: 0; padding: 0;"></body>
+</html>
