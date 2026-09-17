@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-import BrandLogo from "./BrandLogo";
 import { site } from "../content";
 
 const tabs = [
@@ -43,18 +42,17 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/85 backdrop-blur-xl transition-all duration-300">
-      <nav className="relative mx-auto flex h-18 max-w-5xl items-center justify-between px-6">
-        {/* Still & fixed Brand Logo and Name */}
+      <nav className="relative mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+        {/* Clean brand title */}
         <Link
           to="/"
           onClick={() => {
             close();
             scrollTop();
           }}
-          className="flex items-center gap-3.5 select-none"
+          className="flex items-center select-none"
         >
-          <BrandLogo size={52} className="h-13 w-13 shrink-0" />
-          <span className="hidden font-display text-lg font-bold tracking-tight text-ink sm:block">
+          <span className="font-display text-lg font-bold tracking-tight text-ink">
             {site.name}
           </span>
         </Link>

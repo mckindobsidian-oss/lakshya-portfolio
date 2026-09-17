@@ -3,12 +3,32 @@ import logoImg from "../assets/logo.png";
 type BrandLogoProps = {
   className?: string;
   size?: number;
+  variant?: "badge" | "raw";
 };
 
 /**
- * Clean Minimalist "LG" Logo for Lakshya Gupta (from uploaded image).
+ * Clean Minimalist "LG" Logo for Lakshya Gupta with high-contrast dark badge.
  */
-export default function BrandLogo({ className = "h-12 w-12", size = 48 }: BrandLogoProps) {
+export default function BrandLogo({
+  className = "h-11 w-11",
+  size = 44,
+  variant = "badge",
+}: BrandLogoProps) {
+  if (variant === "badge") {
+    return (
+      <div
+        className={`flex items-center justify-center rounded-xl bg-ink border border-ink/20 shadow-xs shrink-0 overflow-hidden ${className}`}
+        style={{ width: size, height: size }}
+      >
+        <img
+          src={logoImg}
+          alt="Lakshya Gupta"
+          className="h-[72%] w-[72%] object-contain select-none"
+        />
+      </div>
+    );
+  }
+
   return (
     <img
       src={logoImg}
@@ -16,7 +36,7 @@ export default function BrandLogo({ className = "h-12 w-12", size = 48 }: BrandL
       width={size}
       height={size}
       style={{ width: size, height: size }}
-      className={`object-contain shrink-0 select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)] ${className}`}
+      className={`object-contain shrink-0 select-none ${className}`}
     />
   );
 }
