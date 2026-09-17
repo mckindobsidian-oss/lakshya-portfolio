@@ -11,9 +11,9 @@
   --color-soft: #666666;
   --color-line: #ececec;
   --color-line-dark: #222222;
-  --color-accent: #9ae634;
-  --color-accent-hover: #b1e533;
-  --color-accent-glow: rgba(154, 230, 52, 0.25);
+  --color-accent: #82ff3f;
+  --color-accent-hover: #9bfb5c;
+  --color-accent-glow: rgba(130, 255, 63, 0.25);
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -146,7 +146,7 @@ body {
   border: 2px solid #ffffff;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ae634;
+  background: #82ff3f;
 }
 * {
   scrollbar-width: thin;
@@ -173,15 +173,15 @@ html.has-custom-cursor * {
 .cursor-dot {
   width: 6px;
   height: 6px;
-  background: #9ae634;
+  background: #82ff3f;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9);
 }
 
 .cursor-ring {
   width: 32px;
   height: 32px;
-  border: 1.5px solid rgba(154, 230, 52, 0.6);
-  background: rgba(154, 230, 52, 0.05);
+  border: 1.5px solid rgba(130, 255, 63, 0.6);
+  background: rgba(130, 255, 63, 0.05);
   transition:
     width 0.22s ease,
     height 0.22s ease,
@@ -192,8 +192,8 @@ html.has-custom-cursor * {
 .cursor-ring.is-hover {
   width: 48px;
   height: 48px;
-  border-color: #9ae634;
-  background: rgba(154, 230, 52, 0.15);
+  border-color: #82ff3f;
+  background: rgba(130, 255, 63, 0.15);
 }
 
 .cursor-ring.is-down {

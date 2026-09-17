@@ -12,13 +12,13 @@ export default function Creations() {
           <Reveal>
             <div className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-ink shadow-2xs">
               <span className="h-2 w-2 rounded-full bg-accent status-live-dot" />
-              <span>Published Works & Projects</span>
+              <span>Published Works & Research</span>
             </div>
             <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-              Things I've made
+              Selected Works
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-soft">
-              Everything I've built, written, and published — starting with my first book, with more digital creations in progress.
+              Published literature and strategic works — exploring concepts across astronomy, logic, and creative inquiry.
             </p>
           </Reveal>
 
@@ -26,27 +26,25 @@ export default function Creations() {
             <Reveal delay={120}>
               <div className="mt-12 overflow-hidden rounded-3xl border border-line bg-white shadow-md transition-shadow duration-300 hover:shadow-xl hover:border-accent">
                 <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-                  {/* book cover showcase panel */}
-                  <div className="relative flex items-center justify-center overflow-hidden bg-black p-10 sm:p-14">
-                    <div className="w-full max-w-[280px]">
-                      {book.cover ? (
-                        <img
-                          src={book.cover}
-                          alt={`${book.title} — book cover`}
-                          className="w-full rounded-xl shadow-2xl ring-1 ring-white/10"
-                        />
-                      ) : (
-                        <div className="relative w-full rounded-xl border border-white/15 bg-slate-900 p-8 shadow-2xl text-white">
-                          <p className="font-serif text-5xl">📖</p>
-                          <p className="mt-6 font-serif text-2xl font-bold leading-tight">
-                            {book.title}
-                          </p>
-                          <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                            by Lakshya Gupta
-                          </p>
-                        </div>
-                      )}
-                    </div>
+                  {/* book cover showcase panel — full cover */}
+                  <div className="relative overflow-hidden bg-black min-h-[340px] lg:min-h-[460px]">
+                    {book.cover ? (
+                      <img
+                        src={book.cover}
+                        alt={`${book.title} — book cover`}
+                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full flex-col items-center justify-center p-8 bg-slate-900 text-white">
+                        <p className="font-serif text-5xl">📖</p>
+                        <p className="mt-6 font-serif text-2xl font-bold leading-tight">
+                          {book.title}
+                        </p>
+                        <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                          by Lakshya Gupta
+                        </p>
+                      </div>
+                    )}
                   </div>
 
                   {/* book description & details */}
@@ -95,12 +93,12 @@ export default function Creations() {
             <div className="mt-12 rounded-3xl border-2 border-dashed border-line bg-surface/60 p-8 sm:p-10">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="eyebrow">Next up</p>
+                  <p className="eyebrow">In Development</p>
                   <h3 className="mt-1 font-display text-xl font-bold text-ink">
-                    Interactive Web & Coding Projects
+                    Tactical & Algorithmic Tools
                   </h3>
                   <p className="mt-2 max-w-xl text-sm leading-relaxed text-soft">
-                    Currently experimenting with algorithms, chess tools, and web apps. New code releases will be showcased right here.
+                    Currently engineering interactive chess analysis utilities, endgame visualizers, and minimal web applications.
                   </p>
                 </div>
                 <div className="shrink-0">

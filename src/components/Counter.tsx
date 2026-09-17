@@ -12,46 +12,45 @@ type CounterProps = {
  */
 export default function Counter({ value, className = "" }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-20px" });
-  const [displayValue, setDisplayValue] = useState(value);
+  const isInView = useInView(ref, { once: true, margin: "-10px" });
+  const hasAnimated = useRef(false);
+
+  const match = value.match(/^(\d+)(.*)$/);
+  const targetNumber = match ? parseInt(match[1], 10) : 0;
+  const suffix = match ? match[2] || "" : "";
+
+  const [displayValue, setDisplayValue] = useState(() => (match ? `0${suffix}` : value));
 
   useEffect(() => {
-    // Extract numeric part and suffix
-    const match = value.match(/^(\d+)(.*)$/);
-    if (!match) {
+    if (!isInView || hasAnimated.current || !match) return;
+    hasAnimated.current = true;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
       setDisplayValue(value);
       return;
     }
 
-    const targetNumber = parseInt(match[1], 10);
-    const suffix = match[2] || "";
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion || !isInView) {
-      if (!isInView) setDisplayValue("0" + suffix);
-      else setDisplayValue(value);
-      return;
-    }
-
-    let start = 0;
-    const duration = 1200; // ms
+    const duration = 1500; // ms
     const startTime = performance.now();
 
     const update = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(1, elapsed / duration);
-      // easeOutExpo
+      // easeOutExpo curve
       const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      const current = Math.round(start + (targetNumber - start) * eased);
+      const current = Math.round(targetNumber * eased);
       setDisplayValue(`${current}${suffix}`);
 
       if (progress < 1) {
         requestAnimationFrame(update);
+      } else {
+        setDisplayValue(value);
       }
     };
 
     requestAnimationFrame(update);
-  }, [isInView, value]);
+  }, [isInView, value, targetNumber, suffix, match]);
 
   return (
     <span ref={ref} className={className}>

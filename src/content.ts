@@ -8,14 +8,12 @@ import { images } from "./assets/images";
 export const site = {
   name: "Lakshya Gupta",
   heroSub:
-    "Thirteen, endlessly curious, and never quite done. By day a school student; by choice a chess player chasing the International Master title, a Minecraft creator building worlds for Blockwise, and a young coder teaching himself to bring ideas to life. This is where all of that lives.",
-  bio: "I'm Lakshya, 13 years old. Chess is my main thing — I play on chess.com and lichess every day, and my goal is International Master. When I'm off the board, I make Minecraft content on Blockwise, my YouTube channel. Two hobbies, one site.",
+    "Thirteen years old. Pursuing the International Master title in chess. Dedicated to deep calculation, quiet discipline, and continuous exploration.",
+  bio: "A competitive chess player pursuing the International Master title, balancing tournament circuits with deep tactical study, creative writing, and digital strategy on Blockwise.",
 
   links: {
     youtube: "https://www.youtube.com/@blockwise15",
     email: "lakshyagupta652@gmail.com",
-    discord: "https://discord.com/users/mossmirage_", // TODO: replace with a server invite if you have one
-    instagram: "https://instagram.com/its.montague",
     chesscom: "https://www.chess.com/member/lakshya_gupta_vic",
     lichess: "https://lichess.org/@/lakshyagupta15",
   },
@@ -23,72 +21,68 @@ export const site = {
   youtube: {
     channelName: "Blockwise",
     handle: "@blockwise15",
-    // TODO: your real subscriber count, e.g. "12K" (empty shows "coming soon")
     subscribers: "",
   },
 
   chess: {
     goal: "International Master",
     stats: [
-      { label: "Chess.com rating", value: "1150" },
-      { label: "Lichess rating", value: "1500" },
-      { label: "Tournaments played", value: "30+" },
-      { label: "Best win (rated)", value: "1800" },
+      { label: "Chess.com Rating", value: "1400" },
+      { label: "Lichess Rating", value: "1500" },
+      { label: "Rated Tournaments", value: "30+" },
+      { label: "Peak Rated Win", value: "1800" },
     ],
   },
 
-  // shown in the footer bar, like "AI-FIRST · FINANCE-SMART · SYSTEMS-MINDED"
-  footerMotto: "ONE MOVE AT A TIME · ONE BUILD AT A TIME · ONE DREAM AT A TIME",
+  footerMotto: "STILL EXPLORING.",
 
   web3forms: {
-    // Web3Forms access key — emails lakshyagupta652@gmail.com directly
     accessKey: "35490032-a6a5-4b3a-bb68-d17c585c981f",
   },
 };
 
 // ---- ACHIEVEMENTS (shown as a sliding carousel on the About page) ----------
-// Drop your photos into src/assets/photos/ and put the path here,
-// e.g. photo: "/src/assets/photos/my-photo.jpg".
 export const achievements = [
   {
     title: "CBSE Nationals",
-    tag: "Nationals · 2025",
+    tag: "National Stage · 2025",
     detail:
-      "Placed 9th at the CBSE Nationals 2025 — my first time on the national stage, facing the best young players from across India.",
+      "Secured 9th place at the CBSE National Championship, competing against India's elite junior circuit.",
     photo: images.cbse,
   },
   {
-    title: "Haryana State",
-    tag: "State · 2023",
+    title: "Haryana State Runner-Up",
+    tag: "State Championship · 2023",
     detail:
-      "Runner-up at the Haryana State Championship 2023 — 2nd place among the strongest players my state has to offer.",
+      "Silver medalist at the Haryana State Championship, marking a definitive breakthrough in competitive play.",
     photo: images.haryana,
   },
   {
-    title: "Chess badge",
-    tag: "FIDE rated",
-    detail: "A badge from a FIDE-rated tournament — stepping into official rated chess for the first time.",
+    title: "Official FIDE Rating",
+    tag: "International Circuit",
+    detail:
+      "Official credentials from FIDE-rated over-the-board play, initiating the formal quest for International Master.",
     photo: images.chessBadge,
   },
   {
-    title: "Lakshya Gupta badge",
-    tag: "Delhi",
+    title: "Delhi FIDE Championship",
+    tag: "FIDE Rated · Delhi",
     detail:
-      "My first FIDE-rated tournament, in Delhi — the badge that marks where the serious chess began.",
+      "Over-the-board tournament badge from high-intensity classical time controls in Delhi.",
     photo: images.badge,
   },
   {
-    title: "The website",
-    tag: "First code",
+    title: "This Space",
+    tag: "Personal Archive · 2026",
     detail:
-      "My first self-coded website — this very portfolio, built line by line from a blank page.",
+      "A tailored digital portfolio engineered to document milestones, strategy, and chess progression.",
     photo: images.website,
   },
   {
-    title: "Life Beyond Earth",
-    tag: "Book · briBooks",
+    title: "Published Author",
+    tag: "Publication · briBooks",
     detail:
-      "Certificate for writing my first book, Life Beyond Earth — published on briBooks, written for dreamers who stare at the night sky.",
+      "Author certificate for 'Life Beyond Earth', exploring astrophysics and speculative planetary exploration.",
     photo: images.bookCert,
   },
 ];
@@ -97,50 +91,50 @@ export const achievements = [
 export const gallery = [
   {
     title: "CBSE Nationals 2025",
-    tag: "Chess · Nationals",
+    tag: "National Championship",
     category: "Chess",
     description:
-      "Secured 9th place at the CBSE National Championship — competing against the top juniors across India.",
+      "Secured 9th place at the national junior level, testing preparation against seasoned competitors.",
     photo: images.cbse,
   },
   {
-    title: "Haryana State Runner-Up",
-    tag: "Chess · State",
+    title: "Haryana State Championship",
+    tag: "State Championship",
     category: "Chess",
     description:
-      "2nd place finish at the Haryana State Chess Championship 2023 — a pivotal milestone in my competitive journey.",
+      "Silver medal finish at the Haryana State Championship 2023.",
     photo: images.haryana,
   },
   {
     title: "Official FIDE Rating Badge",
-    tag: "FIDE · Rated",
+    tag: "FIDE Classical",
     category: "Milestones",
     description:
-      "Badge earned from my official FIDE-rated chess tournament participation, beginning the road to International Master.",
+      "Credentials marking the entry into the international FIDE classical rating ladder.",
     photo: images.chessBadge,
   },
   {
-    title: "Delhi FIDE Tournament",
-    tag: "Tournament · Delhi",
+    title: "Delhi FIDE Circuit",
+    tag: "Delhi Circuit",
     category: "Milestones",
     description:
-      "Official tournament badge from Delhi — where intense over-the-board competition tested my preparation.",
+      "Over-the-board badge from competitive tournament rounds in Delhi.",
     photo: images.badge,
   },
   {
     title: "Life Beyond Earth Certificate",
-    tag: "Book · briBooks",
+    tag: "Publication",
     category: "Creations",
     description:
-      "Official publication certificate for authoring 'Life Beyond Earth', published through briBooks.",
+      "Author certificate awarded for the release of 'Life Beyond Earth' on briBooks.",
     photo: images.bookCert,
   },
   {
-    title: "First Portfolio Code",
-    tag: "Code · Milestone",
+    title: "Personal Portfolio",
+    tag: "Digital Archive",
     category: "Creations",
     description:
-      "Building this portfolio from scratch in React & TypeScript — my personal developer and creator hub.",
+      "A personal space cataloging competitive chess milestones, publications, and creative projects.",
     photo: images.website,
   },
 ];
@@ -149,17 +143,15 @@ export const gallery = [
 export const creations = [
   {
     title: "Life Beyond Earth",
-    tag: "Book",
+    tag: "Hardcover & Digital",
     detail:
-      "My first book, published on briBooks — a journey into what lies beyond our planet, written for dreamers who stare at the night sky.",
+      "An exploratory volume on astrophysics, planetary science, and the prospective horizons of humanity beyond our atmosphere.",
     href: "https://www.bribooks.com/bookstore/life-beyond-earth-by-lakshya-gupta/",
-    cover: images.bookCover,
+    cover: images.bookMockup,
   },
 ];
 
 // ---- YOUTUBE / VIDEOS ------------------------------------------------------
-// Just the video IDs — the thumbnail is fetched straight from YouTube and the
-// card links to the video. No descriptions, exactly as asked.
 export const videos = [
   { id: "ZUsTbJAdICQ" },
   { id: "wrdGqyJZVxY" },

@@ -18,6 +18,9 @@ import brahmaSarovarWide from "./photos/brahma-sarovar-wide.jpg";
 import sarovarBridge from "./photos/sarovar-bridge.jpg";
 import sunsetTemple from "./photos/sunset-temple.jpg";
 import museumSelfie from "./photos/museum-selfie.jpg";
+import aboutChessDesk from "./photos/about-chess-desk.jpg";
+import aboutBanner from "./photos/about-banner.png";
+import bookMockup from "./photos/book-mockup.jpg";
 
 export const images = {
   logo,
@@ -25,6 +28,9 @@ export const images = {
   badge,
   bookCert,
   bookCover,
+  bookMockup,
+  aboutChessDesk,
+  aboutBanner,
   cbse,
   chessBadge,
   haryana,

@@ -4,13 +4,13 @@ import Lenis from "lenis";
 
 import { AnimatePresence } from "framer-motion";
 
-import AmbientBackground from "./components/AmbientBackground";
 import CustomContextMenu from "./components/CustomContextMenu";
 import CustomCursor from "./components/CustomCursor";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import PageTransition from "./components/PageTransition";
 import Preloader from "./components/Preloader";
+import VantaNetBackground from "./components/VantaNetBackground";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Creations from "./pages/Creations";
@@ -42,11 +42,11 @@ function SmoothScroll() {
 
 /* per-tab browser titles */
 const titles: Record<string, string> = {
-  "/": "Lakshya Gupta Portfolio",
+  "/": "Lakshya Gupta — Chess, Code & Blockwise",
   "/about": "About — Lakshya Gupta",
   "/gallery": "Gallery — Lakshya Gupta",
   "/youtube": "Blockwise — Lakshya Gupta",
-  "/creations": "My creations — Lakshya Gupta",
+  "/creations": "Creations — Lakshya Gupta",
   "/contact": "Contact — Lakshya Gupta",
 };
 
@@ -60,12 +60,9 @@ function Layout() {
     document.title = titles[pathname] ?? "404 — Page Not Found — Lakshya Gupta";
   }, [pathname]);
 
-  // the gallery is full-bleed — no footer there
-  const hideFooter = pathname.startsWith("/gallery");
-
   return (
     <div className="relative flex min-h-screen flex-col">
-      <AmbientBackground />
+      <VantaNetBackground />
       <Navbar />
       <main className="relative z-10 flex-1">
         <AnimatePresence mode="wait">
@@ -80,7 +77,7 @@ function Layout() {
           </Routes>
         </AnimatePresence>
       </main>
-      {!hideFooter && <Footer />}
+      <Footer />
     </div>
   );
 }

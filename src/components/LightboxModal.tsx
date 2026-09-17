@@ -122,7 +122,7 @@ export default function LightboxModal({
                 <p className="mt-4 text-sm leading-relaxed text-soft">{item.detail}</p>
               </div>
 
-              <div className="mt-8 border-t border-line/60 pt-4 text-xs font-semibold uppercase tracking-wider text-brown">
+              <div className="mt-8 border-t border-line/60 pt-4 text-xs font-semibold uppercase tracking-wider text-accent">
                 Official Milestone
               </div>
             </div>

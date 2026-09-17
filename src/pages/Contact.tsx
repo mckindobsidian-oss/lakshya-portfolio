@@ -4,8 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Reveal from "../components/Reveal";
 import {
   CheckIcon,
-  DiscordIcon,
-  InstagramBrandIcon,
   LichessIcon,
   MailIcon,
   YouTubeBrandIcon,
@@ -21,21 +19,6 @@ const channels = [
     href: `mailto:${site.links.email}`,
     external: false,
     copyValue: site.links.email,
-  },
-  {
-    icon: <DiscordIcon className="h-5 w-5" />,
-    title: "Discord",
-    sub: "mossmirage_",
-    href: site.links.discord,
-    external: true,
-    copyValue: "mossmirage_",
-  },
-  {
-    icon: <InstagramBrandIcon className="h-5 w-5" />,
-    title: "Instagram",
-    sub: "its.montague",
-    href: site.links.instagram,
-    external: true,
   },
   {
     icon: <YouTubeBrandIcon className="h-5 w-5" />,
@@ -149,7 +132,7 @@ export default function Contact() {
               </span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-soft">
-              Chess challenges, collaboration ideas, or just saying hi — I read everything. Reach me however you like; Discord and email get the quickest reply.
+              Chess challenges, collaboration ideas, or inquiries — I read everything. Reach me directly via email or connect through any of the platforms below.
             </p>
           </Reveal>
 

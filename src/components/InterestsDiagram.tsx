@@ -6,7 +6,7 @@ type Props = { className?: string };
 
 const quadrants = [
   { id: "creation", text: "CREATION", hint: "Books & Videos", x: 60, y: 70 },
-  { id: "coding", text: "CODING", hint: "React & TypeScript", x: 390, y: 70 },
+  { id: "build", text: "BUILD", hint: "Projects & Ideas", x: 390, y: 70 },
   { id: "chess", text: "CHESS", hint: "Aiming for IM", x: 60, y: 470 },
   { id: "tech", text: "TECH", hint: "Minecraft & Systems", x: 390, y: 470 },
 ];
@@ -119,36 +119,30 @@ export default function InterestsDiagram({ className = "" }: Props) {
           />
         ))}
 
-        {/* center piece — LG Logo badge with neon green accent border */}
-        <g className="cursor-pointer">
-          <motion.g
-            whileHover={{ scale: 1.08 }}
-            transition={{ type: "spring", stiffness: 400, damping: 18 }}
-            style={{ originX: "300px", originY: "300px" }}
-          >
-            {/* Background card */}
-            <rect
-              x={238}
-              y={238}
-              width={124}
-              height={124}
-              rx={24}
-              fill="#000000"
-              stroke="#9ae634"
-              strokeWidth="3.5"
-              style={{ filter: "drop-shadow(0 8px 24px rgba(154, 230, 52, 0.35))" }}
-            />
-            {/* Custom LG Logo Image */}
-            <image
-              href={logoImg}
-              x={244}
-              y={244}
-              width={112}
-              height={112}
-              clipPath="url(#center-logo-clip)"
-              preserveAspectRatio="xMidYMid meet"
-            />
-          </motion.g>
+        {/* center piece — LG Logo badge with neon green accent border (still & fixed) */}
+        <g>
+          {/* Background card */}
+          <rect
+            x={238}
+            y={238}
+            width={124}
+            height={124}
+            rx={24}
+            fill="#000000"
+            stroke="#82ff3f"
+            strokeWidth="3"
+            style={{ filter: "drop-shadow(0 8px 24px rgba(130, 255, 63, 0.28))" }}
+          />
+          {/* Custom LG Logo Image */}
+          <image
+            href={logoImg}
+            x={244}
+            y={244}
+            width={112}
+            height={112}
+            clipPath="url(#center-logo-clip)"
+            preserveAspectRatio="xMidYMid meet"
+          />
         </g>
 
         {/* interactive quadrant badges */}
@@ -167,12 +161,12 @@ export default function InterestsDiagram({ className = "" }: Props) {
                 width={150}
                 height={52}
                 rx={12}
-                fill={isHovered ? "#9ae634" : "#ffffff"}
+                fill={isHovered ? "#82ff3f" : "#ffffff"}
                 stroke="#141414"
                 strokeWidth={isHovered ? "2.5" : "2"}
                 className="transition-all duration-200"
                 style={{
-                  filter: isHovered ? "drop-shadow(0 6px 16px rgba(154,230,52,0.4))" : "drop-shadow(0 2px 4px rgba(0,0,0,0.06))",
+                  filter: isHovered ? "drop-shadow(0 6px 16px rgba(130,255,63,0.4))" : "drop-shadow(0 2px 4px rgba(0,0,0,0.06))",
                 }}
               />
               <text

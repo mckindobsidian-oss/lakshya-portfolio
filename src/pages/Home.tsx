@@ -16,7 +16,7 @@ export default function Home() {
                 <div className="inline-flex items-center gap-2 rounded-full border border-line bg-white/90 px-3.5 py-1.5 shadow-2xs backdrop-blur-xs">
                   <span className="h-2 w-2 rounded-full bg-accent status-live-dot" />
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink/70">
-                    Student · Chess Competitor · Creator
+                    Chess Competitor · Strategic Explorer
                   </p>
                 </div>
               </Reveal>
@@ -37,13 +37,13 @@ export default function Home() {
                 <div className="mt-9 flex flex-wrap items-center gap-4">
                   <Link to="/about" className="btn-primary group">
                     <ChessBoardIcon className="h-4 w-4 transition-transform duration-200 group-hover:rotate-12" />
-                    <span>My chess journey</span>
+                    <span>Explore Chess Pathway</span>
                     <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                   </Link>
 
                   <Link to="/youtube" className="btn-ghost group">
                     <YouTubeBrandIcon className="h-4 w-4 transition-transform duration-200 group-hover:scale-110" />
-                    <span>Watch on YouTube</span>
+                    <span>Watch on Blockwise</span>
                   </Link>
                 </div>
               </Reveal>
@@ -53,17 +53,17 @@ export default function Home() {
                 <div className="mt-12 flex flex-wrap items-center gap-6 border-t border-line pt-6 text-sm text-soft">
                   <div className="flex items-center gap-2">
                     <span className="font-display font-bold text-ink">13yo</span>
-                    <span>Student & Coder</span>
+                    <span>Age</span>
                   </div>
                   <span className="text-line">•</span>
                   <div className="flex items-center gap-2">
-                    <span className="font-display font-bold text-ink">Aiming IM</span>
-                    <span>Chess Competitor</span>
+                    <span className="font-display font-bold text-ink">Pursuing IM</span>
+                    <span>Chess Title Target</span>
                   </div>
                   <span className="text-line">•</span>
                   <div className="flex items-center gap-2">
                     <span className="font-display font-bold text-ink">Blockwise</span>
-                    <span>Content Creator</span>
+                    <span>Video Production</span>
                   </div>
                 </div>
               </Reveal>

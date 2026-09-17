@@ -8,15 +8,15 @@ type BrandLogoProps = {
 /**
  * Clean Minimalist "LG" Logo for Lakshya Gupta (from uploaded image).
  */
-export default function BrandLogo({ className = "h-9 w-9", size = 36 }: BrandLogoProps) {
+export default function BrandLogo({ className = "h-12 w-12", size = 48 }: BrandLogoProps) {
   return (
     <img
       src={logoImg}
-      alt="Lakshya Gupta Logo"
+      alt="Lakshya Gupta"
       width={size}
       height={size}
       style={{ width: size, height: size }}
-      className={`rounded-xl object-contain bg-black shadow-xs shrink-0 select-none transition-transform duration-200 hover:scale-105 active:scale-95 ${className}`}
+      className={`object-contain shrink-0 select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)] ${className}`}
     />
   );
 }

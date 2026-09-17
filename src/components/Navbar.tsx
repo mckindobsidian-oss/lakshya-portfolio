@@ -3,16 +3,15 @@ import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 import BrandLogo from "./BrandLogo";
-import Magnetic from "./Magnetic";
 import { site } from "../content";
 
 const tabs = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
+  { to: "/creations", label: "Creations" },
   { to: "/gallery", label: "Gallery" },
   { to: "/youtube", label: "YouTube" },
-  { to: "/creations", label: "My creations" },
-  { to: "/contact", label: "Contact me" },
+  { to: "/contact", label: "Contact" },
 ];
 
 function isActive(pathname: string, to: string) {
@@ -43,29 +42,22 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/80 backdrop-blur-lg transition-all duration-300">
-      <nav className="relative mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-        <Magnetic strength={0.15}>
-          <Link
-            to="/"
-            onClick={() => {
-              close();
-              scrollTop();
-            }}
-            className="group flex items-center gap-2.5"
-          >
-            <motion.div
-              whileHover={{ scale: 1.06, rotate: -2 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              <BrandLogo className="h-9 w-9 shadow-sm group-hover:shadow-md" />
-            </motion.div>
-            <span className="hidden font-display text-base font-semibold tracking-tight text-ink sm:block">
-              {site.name}
-            </span>
-          </Link>
-        </Magnetic>
+    <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/85 backdrop-blur-xl transition-all duration-300">
+      <nav className="relative mx-auto flex h-18 max-w-5xl items-center justify-between px-6">
+        {/* Still & fixed Brand Logo and Name */}
+        <Link
+          to="/"
+          onClick={() => {
+            close();
+            scrollTop();
+          }}
+          className="flex items-center gap-3.5 select-none"
+        >
+          <BrandLogo size={52} className="h-13 w-13 shrink-0" />
+          <span className="hidden font-display text-lg font-bold tracking-tight text-ink sm:block">
+            {site.name}
+          </span>
+        </Link>
 
         {/* desktop tabs with animated layoutId pill */}
         <div className="hidden items-center gap-1 md:flex">
@@ -76,8 +68,8 @@ export default function Navbar() {
                 key={t.to}
                 to={t.to}
                 onClick={scrollTop}
-                className={`relative rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors duration-200 ${
-                  active ? "text-ink" : "text-soft hover:text-ink"
+                className={`relative rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200 ${
+                  active ? "text-ink font-semibold" : "text-soft hover:text-ink"
                 }`}
               >
                 {/* sliding active pill indicator */}
@@ -97,7 +89,7 @@ export default function Navbar() {
         {/* mobile menu button */}
         <motion.button
           type="button"
-          whileTap={{ scale: 0.92 }}
+          whileTap={{ scale: 0.94 }}
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -120,9 +112,9 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-x-0 top-16 border-b border-line bg-paper/95 px-6 py-4 shadow-lg backdrop-blur-xl md:hidden"
+              className="absolute inset-x-0 top-16 border-b border-line bg-paper/95 px-6 py-4 shadow-xl backdrop-blur-2xl md:hidden"
             >
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1.5">
                 {tabs.map((t, idx) => {
                   const active = isActive(pathname, t.to);
                   return (
@@ -138,14 +130,14 @@ export default function Navbar() {
                           close();
                           scrollTop();
                         }}
-                        className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+                        className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-all ${
                           active
-                            ? "bg-surface text-ink border-l-3 border-brown font-semibold shadow-xs"
+                            ? "bg-surface text-ink border-l-2 border-accent font-semibold shadow-xs"
                             : "text-soft hover:bg-surface/70 hover:text-ink"
                         }`}
                       >
                         <span>{t.label}</span>
-                        {active && <span className="text-xs font-semibold text-slate-900">Current</span>}
+                        {active && <span className="text-xs font-mono text-accent">Active</span>}
                       </Link>
                     </motion.div>
                   );

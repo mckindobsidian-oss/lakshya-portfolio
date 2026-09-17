@@ -13,13 +13,13 @@ export default function YouTube() {
           <Reveal>
             <div className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#FF0000] shadow-2xs">
               <span className="h-2 w-2 rounded-full bg-[#FF0000] status-live-dot" />
-              <span>YouTube Creator</span>
+              <span>Blockwise Media</span>
             </div>
             <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
               {site.youtube.channelName}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-soft">
-              Blockwise — Minecraft PvP, optimization tips, mods, and high-energy gameplay. All my short-form and long-form video content lives on the channel.
+              Blockwise — High-level gameplay mechanics, tactical optimization, and custom mod showcases.
             </p>
           </Reveal>
 

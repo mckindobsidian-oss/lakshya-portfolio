@@ -1,0 +1,161 @@
+warning: in the working copy of 'src/pages/Contact.tsx', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/src/components/InterestsDiagram.tsx b/src/components/InterestsDiagram.tsx[m
+[1mindex f4a7086..cfb784a 100644[m
+[1m--- a/src/components/InterestsDiagram.tsx[m
+[1m+++ b/src/components/InterestsDiagram.tsx[m
+[36m@@ -52,7 +52,7 @@[m [mexport default function InterestsDiagram({ className = "" }: Props) {[m
+           opacity="0.25"[m
+         />[m
+ [m
+[31m-        {/* concentric radar rings */}[m
+[32m+[m[32m        {/* concentric radar rings with elegant rotation */}[m
+         <motion.circle[m
+           cx={300}[m
+           cy={300}[m
+[36m@@ -63,10 +63,10 @@[m [mexport default function InterestsDiagram({ className = "" }: Props) {[m
+           strokeDasharray="6 8"[m
+           opacity="0.3"[m
+           animate={{ rotate: 360 }}[m
+[31m-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}[m
+[32m+[m[32m          transition={{ duration: 80, repeat: Infinity, ease: "linear" }}[m
+           style={{ originX: "300px", originY: "300px" }}[m
+         />[m
+[31m-        <circle[m
+[32m+[m[32m        <motion.circle[m
+           cx={300}[m
+           cy={300}[m
+           r={170}[m
+[36m@@ -74,8 +74,11 @@[m [mexport default function InterestsDiagram({ className = "" }: Props) {[m
+           stroke="#141414"[m
+           strokeWidth="1.2"[m
+           opacity="0.3"[m
+[32m+[m[32m          animate={{ rotate: -360 }}[m
+[32m+[m[32m          transition={{ duration: 120, repeat: Infinity, ease: "linear" }}[m
+[32m+[m[32m          style={{ originX: "300px", originY: "300px" }}[m
+         />[m
+[31m-        <circle[m
+[32m+[m[32m        <motion.circle[m
+           cx={300}[m
+           cy={300}[m
+           r={100}[m
+[36m@@ -84,6 +87,9 @@[m [mexport default function InterestsDiagram({ className = "" }: Props) {[m
+           strokeWidth="1.2"[m
+           strokeDasharray="3 4"[m
+           opacity="0.35"[m
+[32m+[m[32m          animate={{ rotate: 360 }}[m
+[32m+[m[32m          transition={{ duration: 100, repeat: Infinity, ease: "linear" }}[m
+[32m+[m[32m          style={{ originX: "300px", originY: "300px" }}[m
+         />[m
+ [m
+         {/* crosshair center axes */}[m
+[1mdiff --git a/src/content.ts b/src/content.ts[m
+[1mindex 71bcfac..0706446 100644[m
+[1m--- a/src/content.ts[m
+[1m+++ b/src/content.ts[m
+[36m@@ -8,13 +8,13 @@[m [mimport { images } from "./assets/images";[m
+ export const site = {[m
+   name: "Lakshya Gupta",[m
+   heroSub:[m
+[31m-    "Thirteen, endlessly curious, and never quite done. By day a school student; by choice a chess player chasing the International Master title, a Minecraft creator building worlds for Blockwise, and a young coder teaching himself to bring ideas to life. This is where all of that lives.",[m
+[31m-  bio: "I'm Lakshya, 13 years old. Chess is my main thing — I play on chess.com and lichess every day, and my goal is International Master. When I'm off the board, I make Minecraft content on Blockwise, my YouTube channel. Two hobbies, one site.",[m
+[32m+[m[32m    "Thirteen. Chess player chasing International Master. Minecraft creator building Blockwise. Student teaching himself to code. This is where it all lives.",[m
+[32m+[m[32m  bio: "I'm Lakshya, 13 years old. Chess is my main pursuit — I play on chess.com and lichess every day, working toward International Master. Off the board, I make Minecraft content on Blockwise, my YouTube channel. Two passions, one site.",[m
+ [m
+   links: {[m
+     youtube: "https://www.youtube.com/@blockwise15",[m
+     email: "lakshyagupta652@gmail.com",[m
+[31m-    discord: "https://discord.com/users/mossmirage_", // TODO: replace with a server invite if you have one[m
+[32m+[m[32m    discord: "https://discord.com/users/mossmirage_",[m
+     instagram: "https://instagram.com/its.montague",[m
+     chesscom: "https://www.chess.com/member/lakshya_gupta_vic",[m
+     lichess: "https://lichess.org/@/lakshyagupta15",[m
+[36m@@ -23,7 +23,6 @@[m [mexport const site = {[m
+   youtube: {[m
+     channelName: "Blockwise",[m
+     handle: "@blockwise15",[m
+[31m-    // TODO: your real subscriber count, e.g. "12K" (empty shows "coming soon")[m
+     subscribers: "",[m
+   },[m
+ [m
+[36m@@ -37,11 +36,9 @@[m [mexport const site = {[m
+     ],[m
+   },[m
+ [m
+[31m-  // shown in the footer bar, like "AI-FIRST · FINANCE-SMART · SYSTEMS-MINDED"[m
+[31m-  footerMotto: "ONE MOVE AT A TIME · ONE BUILD AT A TIME · ONE DREAM AT A TIME",[m
+[32m+[m[32m  footerMotto: "Perfect is the enemy of done.",[m
+ [m
+   web3forms: {[m
+[31m-    // Web3Forms access key — emails lakshyagupta652@gmail.com directly[m
+     accessKey: "35490032-a6a5-4b3a-bb68-d17c585c981f",[m
+   },[m
+ };[m
+[1mdiff --git a/src/pages/About.tsx b/src/pages/About.tsx[m
+[1mindex 8dc8545..30a7fa4 100644[m
+[1m--- a/src/pages/About.tsx[m
+[1m+++ b/src/pages/About.tsx[m
+[36m@@ -11,19 +11,19 @@[m [mimport { achievements, site } from "../content";[m
+ const facts = [[m
+   "13 years old",[m
+   "Chess player",[m
+[31m-  `Aiming: ${site.chess.goal}`,[m
+[32m+[m[32m  `Aiming ${site.chess.goal}`,[m
+   "Minecraft creator",[m
+   "Student",[m
+ ];[m
+ [m
+ const principle = {[m
+[31m-  eyebrow: "Current operating principle",[m
+[32m+[m[32m  eyebrow: "Operating principle",[m
+   lines: ["Chess every day.", "Code something new.", "Create without waiting for perfect."],[m
+ };[m
+ [m
+ const education = [[m
+   { name: "School", years: "2019 — 2026", detail: "Student · Class 8" },[m
+[31m-  { name: "Self-taught", years: "2023 — now", detail: "Coding · Chess · Content" },[m
+[32m+[m[32m  { name: "Self-taught", years: "2023 — present", detail: "Coding · Chess · Content" },[m
+ ];[m
+ [m
+ export default function About() {[m
+[36m@@ -178,8 +178,8 @@[m [mexport default function About() {[m
+                 </div>[m
+                 <div>[m
+                   <p className="eyebrow">Chess</p>[m
+[31m-                  <h2 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl text-ink">[m
+[31m-                    Going for {site.chess.goal}[m
+[32m+[m[32m                  <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">[m
+[32m+[m[32m                    Pursuing {site.chess.goal}[m
+                   </h2>[m
+                 </div>[m
+               </div>[m
+[36m@@ -226,9 +226,9 @@[m [mexport default function About() {[m
+             <div className="flex flex-wrap items-end justify-between gap-4">[m
+               <div>[m
+                 <p className="eyebrow">Milestones</p>[m
+[31m-                <h2 className="h2">Moments that really matter</h2>[m
+[32m+[m[32m                <h2 className="h2">Moments that matter</h2>[m
+                 <p className="mt-3 max-w-2xl text-soft">[m
+[31m-                  Scroll with your mouse wheel over the card or use controls to browse photos and details sideways.[m
+[32m+[m[32m                  Mouse wheel over the card or use controls to browse.[m
+                 </p>[m
+               </div>[m
+ [m
+[1mdiff --git a/src/pages/Contact.tsx b/src/pages/Contact.tsx[m
+[1mindex e0c4633..a0ca066 100644[m
+[1m--- a/src/pages/Contact.tsx[m
+[1m+++ b/src/pages/Contact.tsx[m
+[36m@@ -67,7 +67,7 @@[m [mconst channels = [[m
+ ];[m
+ [m
+ const inputCls =[m
+[31m-  "w-full rounded-2xl border border-line bg-white px-4 py-3.5 text-sm text-ink placeholder:text-soft outline-none transition-all focus:border-ink focus:ring-2 focus:ring-accent/40";[m
+[32m+[m[32m  "w-full rounded-lg border border-line bg-white px-3.5 py-3 text-sm text-ink placeholder:text-soft outline-none transition-all focus:border-ink focus:ring-2 focus:ring-accent/40";[m
+ [m
+ type FormStatus = "idle" | "sending" | "sent" | "error";[m
+ [m
+[36m@@ -88,7 +88,6 @@[m [mexport default function Contact() {[m
+     showToast(`Copied ${label} to clipboard!`);[m
+   };[m
+ [m
+[31m-  // sends the message straight to Web3Forms[m
+   const sendEmail = async

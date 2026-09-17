@@ -7,23 +7,19 @@ import LightboxModal, { type LightboxItem } from "../components/LightboxModal";
 import Reveal from "../components/Reveal";
 import { ArrowRightIcon, ChessBoardIcon, YouTubeBrandIcon } from "../components/Icons";
 import { achievements, site } from "../content";
+import { images } from "../assets/images";
 
 const facts = [
   "13 years old",
-  "Chess player",
-  `Aiming: ${site.chess.goal}`,
-  "Minecraft creator",
+  "Competitive Chess",
+  `Target: ${site.chess.goal}`,
+  "Blockwise Creator",
   "Student",
 ];
 
-const principle = {
-  eyebrow: "Current operating principle",
-  lines: ["Chess every day.", "Code something new.", "Create without waiting for perfect."],
-};
-
 const education = [
-  { name: "School", years: "2019 — 2026", detail: "Student · Class 8" },
-  { name: "Self-taught", years: "2023 — now", detail: "Coding · Chess · Content" },
+  { name: "Academic Schooling", years: "2019 — 2026", detail: "Class 8 · Focused on strategic studies" },
+  { name: "Chess & Strategy", years: "2023 — Present", detail: "FIDE rated tournament circuit & master preparation" },
 ];
 
 export default function About() {
@@ -48,7 +44,6 @@ export default function About() {
     if (!el) return;
 
     const onWheel = (e: WheelEvent) => {
-      // Stop the window/page from scrolling up or down
       e.preventDefault();
       e.stopPropagation();
 
@@ -64,7 +59,6 @@ export default function About() {
         setActivePhotoIdx((prev) => (prev - 1 + achievements.length) % achievements.length);
       }
 
-      // Smooth cooldown so one scroll gesture cleanly steps 1 slide
       setTimeout(() => {
         isScrollingRef.current = false;
       }, 350);
@@ -91,9 +85,9 @@ export default function About() {
       <section className="border-b border-line">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
-            <p className="eyebrow">About</p>
+            <p className="eyebrow">Profile</p>
             <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-              Who I am
+              Focus & Pathway
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-soft">{site.bio}</p>
           </Reveal>
@@ -103,7 +97,7 @@ export default function About() {
               {facts.map((f) => (
                 <span
                   key={f}
-                  className="rounded-full border border-line bg-white px-4 py-1.5 text-sm font-medium text-ink shadow-2xs"
+                  className="rounded-full border border-line bg-white/90 px-4 py-1.5 text-sm font-medium text-ink shadow-2xs backdrop-blur-sm"
                 >
                   {f}
                 </span>
@@ -113,53 +107,44 @@ export default function About() {
         </div>
       </section>
 
-      {/* ---------- BOXED SECTIONS (Still, crisp cards — No Tilt) ---------- */}
+      {/* ---------- BOXED SECTIONS (Banner & Foundations) ---------- */}
       <section className="border-b border-line">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
-            <p className="eyebrow">The short version</p>
+            <p className="eyebrow">Operating Principle</p>
           </Reveal>
-          <div className="mt-8 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-            {/* dark box — operating principle (solid still card) */}
+
+          {/* Luxury Reference Banner Image with Rounded Corners */}
+          <div className="mt-8 grid gap-6">
             <Reveal>
-              <div className="group flex h-full flex-col justify-between rounded-3xl bg-[#121412] p-8 text-paper shadow-xl border border-white/10 sm:p-10 transition-colors hover:border-accent/40">
-                <div className="flex items-center justify-between">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                    {principle.eyebrow}
-                  </p>
-                  <span className="text-xl text-accent">✦</span>
-                </div>
-                <div className="mt-8 font-serif text-2xl leading-snug text-slate-100 sm:text-[2.1rem] sm:leading-[1.25]">
-                  {principle.lines.map((l) => (
-                    <p key={l} className="transition-colors duration-200 hover:text-accent">
-                      {l}
-                    </p>
-                  ))}
-                </div>
+              <div className="overflow-hidden rounded-3xl border border-white/10 shadow-2xl bg-black">
+                <img
+                  src={images.aboutBanner}
+                  alt="Chess. Strategy. Explore. — Lakshya Gupta"
+                  className="h-auto w-full object-cover"
+                />
               </div>
             </Reveal>
 
-            {/* neon green box — education (solid still card) */}
+            {/* Foundations & Education card */}
             <Reveal delay={100}>
-              <div className="flex h-full flex-col justify-between rounded-3xl bg-accent p-8 text-ink shadow-md sm:p-10 transition-shadow hover:shadow-xl">
-                <div>
-                  <div className="flex items-center justify-between">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/70">
-                      Education
-                    </p>
-                    <span className="text-xs font-bold text-ink/60">MILESTONES</span>
-                  </div>
-                  <div className="mt-6 flex flex-1 flex-col justify-between gap-6">
-                    {education.map((e) => (
-                      <div key={e.name}>
-                        <div className="flex items-baseline justify-between gap-4 border-b border-ink/20 pb-2">
-                          <p className="font-display text-lg font-bold text-ink">{e.name}</p>
-                          <p className="text-sm font-semibold text-ink/75">{e.years}</p>
-                        </div>
-                        <p className="mt-2 text-sm text-ink/80">{e.detail}</p>
+              <div className="rounded-3xl border border-line bg-surface/90 backdrop-blur-md p-8 shadow-xs sm:p-10">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/70">
+                    Foundations & Timeline
+                  </p>
+                  <span className="text-xs font-bold font-mono text-accent">MILESTONES</span>
+                </div>
+                <div className="mt-6 grid gap-6 sm:grid-cols-2">
+                  {education.map((e) => (
+                    <div key={e.name} className="rounded-2xl border border-line bg-white/70 backdrop-blur-xs p-5">
+                      <div className="flex items-baseline justify-between gap-4 border-b border-line pb-2">
+                        <p className="font-display text-base font-bold text-ink">{e.name}</p>
+                        <p className="text-xs font-semibold text-soft">{e.years}</p>
                       </div>
-                    ))}
-                  </div>
+                      <p className="mt-2.5 text-sm text-soft">{e.detail}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Reveal>
@@ -171,15 +156,15 @@ export default function About() {
       <section className="border-b border-line">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
-            <div className="flex flex-wrap items-start justify-between gap-6 rounded-3xl border border-line bg-white p-8 shadow-xs sm:p-10">
+            <div className="flex flex-wrap items-start justify-between gap-6 rounded-3xl border border-line bg-surface/90 backdrop-blur-md p-8 shadow-xs sm:p-10">
               <div className="flex items-center gap-5">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-ink shadow-sm">
-                  <ChessBoardIcon className="h-7 w-7 text-ink" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-ink text-paper shadow-sm">
+                  <ChessBoardIcon className="h-7 w-7 text-accent" />
                 </div>
                 <div>
-                  <p className="eyebrow">Chess</p>
+                  <p className="eyebrow">Competitive Pathway</p>
                   <h2 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl text-ink">
-                    Going for {site.chess.goal}
+                    Pursuit of {site.chess.goal}
                   </h2>
                 </div>
               </div>
@@ -190,7 +175,7 @@ export default function About() {
                   rel="noreferrer"
                   className="btn-primary"
                 >
-                  Chess.com
+                  Chess.com Profile
                 </a>
                 <a
                   href={site.links.lichess}
@@ -198,16 +183,17 @@ export default function About() {
                   rel="noreferrer"
                   className="btn-ghost"
                 >
-                  Lichess
+                  Lichess Profile
                 </a>
               </div>
             </div>
           </Reveal>
 
+          {/* Animated ratings counters rolling from 0 */}
           <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {site.chess.stats.map((s, i) => (
               <Reveal key={s.label} delay={i * 70}>
-                <div className="rounded-2xl border border-line bg-white p-6 shadow-2xs transition-all hover:border-accent hover:shadow-md">
+                <div className="rounded-2xl border border-line bg-surface/90 backdrop-blur-md p-6 shadow-2xs transition-all hover:border-accent hover:shadow-md">
                   <p className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
                     <Counter value={s.value || "—"} />
                   </p>
@@ -219,16 +205,16 @@ export default function About() {
         </div>
       </section>
 
-      {/* ---------- MOMENTS THAT REALLY MATTER (Sideways Scroll Carousel with Page Scroll Lock) ---------- */}
+      {/* ---------- MOMENTS & ACHIEVEMENTS (Sideways Carousel) ---------- */}
       <section className="border-b border-line">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <p className="eyebrow">Milestones</p>
-                <h2 className="h2">Moments that really matter</h2>
+                <p className="eyebrow">Tournament Milestones</p>
+                <h2 className="h2">Selected Achievements</h2>
                 <p className="mt-3 max-w-2xl text-soft">
-                  Scroll with your mouse wheel over the card or use controls to browse photos and details sideways.
+                  Key moments and credentials across state, national, and FIDE rated circuits.
                 </p>
               </div>
 
@@ -241,7 +227,7 @@ export default function About() {
                   type="button"
                   onClick={handlePrev}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-ink shadow-xs transition-colors hover:bg-accent hover:border-accent"
-                  aria-label="Previous photo"
+                  aria-label="Previous milestone"
                 >
                   ←
                 </button>
@@ -249,7 +235,7 @@ export default function About() {
                   type="button"
                   onClick={handleNext}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-ink shadow-xs transition-colors hover:bg-accent hover:border-accent"
-                  aria-label="Next photo"
+                  aria-label="Next milestone"
                 >
                   →
                 </button>
@@ -257,7 +243,7 @@ export default function About() {
             </div>
           </Reveal>
 
-          {/* Interactive Sideways Showcase with Non-Passive Wheel Lock */}
+          {/* Interactive Sideways Showcase */}
           <Reveal delay={100}>
             <div
               ref={carouselRef}
@@ -334,17 +320,17 @@ export default function About() {
         </div>
       </section>
 
-      {/* ---------- SIDE PROJECT ---------- */}
+      {/* ---------- EXPLORATIONS ---------- */}
       <section>
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
-            <p className="eyebrow">The side project</p>
-            <h2 className="h2">Also, I make videos</h2>
+            <p className="eyebrow">Creative Outlets</p>
+            <h2 className="h2">Strategy & Visual Archive</h2>
           </Reveal>
 
           <Reveal delay={100}>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              <div className="group flex h-full flex-col justify-between rounded-3xl border border-line bg-white p-8 shadow-2xs transition-shadow hover:shadow-lg hover:border-accent">
+              <div className="group flex h-full flex-col justify-between rounded-3xl border border-line bg-surface/90 backdrop-blur-md p-8 shadow-2xs transition-shadow hover:shadow-lg hover:border-accent">
                 <div>
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-ink shadow-xs">
                     <YouTubeBrandIcon className="h-6 w-6" />
@@ -353,35 +339,35 @@ export default function About() {
                     Blockwise
                   </h3>
                   <p className="mt-3 leading-relaxed text-soft">
-                    My Minecraft YouTube channel — optimization, PvP, and mods.
+                    YouTube channel focusing on Minecraft PvP mechanics, systems, and game optimization.
                   </p>
                 </div>
                 <Link
                   to="/youtube"
                   className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
                 >
-                  <span>Visit the channel</span>
+                  <span>Visit Channel</span>
                   <ArrowRightIcon className="transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
               </div>
 
-              <div className="group flex h-full flex-col justify-between rounded-3xl border border-line bg-white p-8 shadow-2xs transition-shadow hover:shadow-lg hover:border-accent">
+              <div className="group flex h-full flex-col justify-between rounded-3xl border border-line bg-surface/90 backdrop-blur-md p-8 shadow-2xs transition-shadow hover:shadow-lg hover:border-accent">
                 <div>
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-ink shadow-xs">
                     <ChessBoardIcon className="h-6 w-6 text-ink" />
                   </div>
                   <h3 className="mt-5 font-display text-2xl font-bold tracking-tight text-ink">
-                    Photo Vault & Gallery
+                    Photo Vault & Archive
                   </h3>
                   <p className="mt-3 leading-relaxed text-soft">
-                    Interactive photo vault, tournament proof, and upcoming drops.
+                    Photographic log documenting classical tournaments, national travels, and milestones.
                   </p>
                 </div>
                 <Link
                   to="/gallery"
                   className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
                 >
-                  <span>Explore Photo Vault</span>
+                  <span>Explore Vault</span>
                   <ArrowRightIcon className="transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
               </div>
