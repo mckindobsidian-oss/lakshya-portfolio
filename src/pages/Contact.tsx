@@ -71,35 +71,84 @@ export default function Contact() {
     showToast(`Copied ${label} to clipboard!`);
   };
 
-  // sends the message straight to Web3Forms via FormData (avoids Cloudflare challenges)
+  // sends the message straight to Web3Forms — TEMPORARY DEBUG BUILD v2
   const sendEmail = async (e: FormEvent) => {
     e.preventDefault();
     setStatus("sending");
+
+    const accessKey = site.web3forms.accessKey;
+    const endpoint = "https://api.web3forms.com/submit";
+
+    console.log("=== Web3Forms Debug v2 ===");
+    console.log("Endpoint:", endpoint);
+    console.log("Access key exists:", Boolean(accessKey));
+    console.log("Access key length:", accessKey?.length ?? 0);
+    console.log("Access key type:", typeof accessKey);
+    console.log("Access key first 4 chars:", accessKey?.slice(0, 4));
+
+    // Log payload field metadata (never log actual values)
+    const nameVal = name.trim();
+    const emailVal = email.trim();
+    const messageVal = message.trim();
+    console.log("--- Payload fields ---");
+    console.log("name exists:", Boolean(nameVal), "| length:", nameVal.length);
+    console.log("email exists:", Boolean(emailVal), "| length:", emailVal.length);
+    console.log("email looks valid:", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal));
+    console.log("message exists:", Boolean(messageVal), "| length:", messageVal.length);
+
     try {
       const formData = new FormData();
-      formData.append("access_key", site.web3forms.accessKey);
-      formData.append("subject", `Message from ${name.trim() || "a visitor"} — ${site.name}`);
-      formData.append("name", name.trim());
-      formData.append("email", email.trim());
-      formData.append("message", message.trim());
-      formData.append("from_name", name.trim() || "Website visitor");
-      if (email.trim()) formData.append("_replyto", email.trim());
-      formData.append("botcheck", ""); // honeypot — must be empty
+      formData.append("access_key", accessKey);
+      formData.append("subject", `Message from ${nameVal || "a visitor"} — ${site.name}`);
+      formData.append("name", nameVal);
+      formData.append("email", emailVal);
+      formData.append("message", messageVal);
+      formData.append("from_name", nameVal || "Website visitor");
+      if (emailVal) formData.append("_replyto", emailVal);
+      formData.append("botcheck", "");
 
-      const res = await fetch("https://api.web3forms.com/submit", {
+      // Log all FormData keys
+      const keys: string[] = [];
+      formData.forEach((_val, key) => keys.push(key));
+      console.log("FormData keys:", keys);
+
+      console.log("Sending fetch...");
+      const res = await fetch(endpoint, {
         method: "POST",
         body: formData,
       });
-      const data = await res.json();
+
+      console.log("Web3Forms status:", res.status);
+      console.log("Web3Forms ok:", res.ok);
+      console.log("Web3Forms content-type:", res.headers.get("content-type"));
+
+      const raw = await res.text();
+      console.log("Web3Forms raw response:", raw);
+
+      let data: { success?: boolean; message?: string };
+      try {
+        data = JSON.parse(raw);
+        console.log("Web3Forms parsed JSON:", data);
+      } catch (parseErr) {
+        console.error("Web3Forms JSON parse error:", parseErr);
+        console.error("Raw was not JSON. First 500 chars:", raw.slice(0, 500));
+        setStatus("error");
+        return;
+      }
+
       if (data.success) {
         setStatus("sent");
         setName("");
         setEmail("");
         setMessage("");
       } else {
+        console.warn("Web3Forms returned success=false:", data);
         setStatus("error");
       }
-    } catch {
+    } catch (err) {
+      console.error("Web3Forms fetch/network error:", err);
+      console.error("Error name:", (err as Error)?.name);
+      console.error("Error message:", (err as Error)?.message);
       setStatus("error");
     }
   };
