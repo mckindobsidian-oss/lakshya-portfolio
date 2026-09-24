@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import PageTransition from "./components/PageTransition";
 import Preloader from "./components/Preloader";
-import VantaNetBackground from "./components/VantaNetBackground";
+import Background from "./components/Background";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Creations from "./pages/Creations";
@@ -62,7 +62,7 @@ function Layout() {
 
   return (
     <div className="relative flex min-h-screen flex-col">
-      <VantaNetBackground />
+      <Background />
       <Navbar />
       <main className="relative z-10 flex-1">
         <AnimatePresence mode="wait">

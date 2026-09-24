@@ -125,12 +125,12 @@ export default function CustomContextMenu() {
           transition={{ duration: 0.14, ease: "easeOut" }}
           style={{ left: menu.x, top: menu.y, width: MENU_W }}
           onContextMenu={(e) => e.preventDefault()}
-          className="fixed z-[100] max-h-[calc(100vh-20px)] overflow-y-auto rounded-2xl border border-white/15 bg-[#0c0d0c]/95 p-2 shadow-2xl backdrop-blur-2xl text-white"
+          className="fixed z-[100] max-h-[calc(100vh-20px)] overflow-y-auto rounded-2xl border border-[#332820] bg-[#130f0c]/95 p-2 shadow-2xl backdrop-blur-2xl text-[#f0ebe3]"
         >
           {/* header */}
-          <div className="flex items-center gap-2.5 rounded-xl bg-white/[0.05] border border-white/[0.08] px-3 py-2.5">
+          <div className="flex items-center gap-2.5 rounded-xl bg-[#1a1410] border border-[#332820] px-3 py-2.5">
             <BrandLogo size={28} className="h-7 w-7 shrink-0" />
-            <p className="truncate font-display text-sm font-semibold leading-tight tracking-tight text-white">
+            <p className="truncate font-display text-sm font-semibold leading-tight tracking-tight text-[#f0ebe3]">
               {site.name}
             </p>
           </div>
@@ -143,14 +143,14 @@ export default function CustomContextMenu() {
                 type="button"
                 role="menuitem"
                 onClick={() => go(n.to)}
-                className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-white/70 transition-all hover:bg-white/[0.07] hover:text-white hover:translate-x-0.5"
+                className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-[#a39a8e] transition-all hover:bg-[#221a14] hover:text-[#f0ebe3] hover:translate-x-0.5"
               >
                 {n.label}
               </button>
             ))}
           </div>
 
-          <div className="my-2 h-px bg-white/10" />
+          <div className="my-2 h-px bg-[#332820]" />
 
           {/* actions */}
           {hasSelection && (
@@ -161,9 +161,9 @@ export default function CustomContextMenu() {
                 e.stopPropagation();
                 copySelectedText();
               }}
-              className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-white/70 transition-colors hover:bg-white/[0.07] hover:text-accent"
+              className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-[#a39a8e] transition-colors hover:bg-[#221a14] hover:text-accent"
             >
-              <CopyIcon className="h-4 w-4 shrink-0 text-white/40" />
+              <CopyIcon className="h-4 w-4 shrink-0 text-[#a39a8e]/60" />
               {copiedText ? "Copied to clipboard" : "Copy selected text"}
             </button>
           )}
@@ -171,9 +171,9 @@ export default function CustomContextMenu() {
             type="button"
             role="menuitem"
             onClick={backToTop}
-            className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-white/70 transition-colors hover:bg-white/[0.07] hover:text-accent"
+            className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-[#a39a8e] transition-colors hover:bg-[#221a14] hover:text-accent"
           >
-            <TopIcon className="h-4 w-4 shrink-0 text-white/40" />
+            <TopIcon className="h-4 w-4 shrink-0 text-[#a39a8e]/60" />
             Back to top
           </button>
         </motion.div>

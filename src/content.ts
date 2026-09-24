@@ -14,7 +14,7 @@ export const site = {
   links: {
     youtube: "https://www.youtube.com/@blockwise15",
     email: "lakshyagupta652@gmail.com",
-    chesscom: "https://www.chess.com/member/lakshya_gupta_vic",
+    chesscom: "https://www.chess.com/member/lakshyagupta15",
     lichess: "https://lichess.org/@/lakshyagupta15",
   },
 

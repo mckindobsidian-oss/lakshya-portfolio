@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
+import logoImg from "../assets/logo.png";
 import { site } from "../content";
 
 const tabs = [
@@ -41,18 +42,23 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/85 backdrop-blur-xl transition-all duration-300">
+    <header className="relative z-40">
       <nav className="relative mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-        {/* Clean brand title */}
+        {/* Clean brand title with logo */}
         <Link
           to="/"
           onClick={() => {
             close();
             scrollTop();
           }}
-          className="flex items-center select-none"
+          className="flex items-center gap-2.5 select-none group"
         >
-          <span className="font-display text-lg font-bold tracking-tight text-ink">
+          <img
+            src={logoImg}
+            alt="Lakshya Gupta"
+            className="h-7 w-7 object-contain transition-transform duration-200 group-hover:scale-108"
+          />
+          <span className="font-display text-lg font-bold tracking-tight text-[#f0ebe3]">
             {site.name}
           </span>
         </Link>
@@ -67,7 +73,7 @@ export default function Navbar() {
                 to={t.to}
                 onClick={scrollTop}
                 className={`relative rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200 ${
-                  active ? "text-ink font-semibold" : "text-soft hover:text-ink"
+                  active ? "text-white font-semibold" : "text-white/65 hover:text-white"
                 }`}
               >
                 {/* sliding active pill indicator */}
@@ -75,7 +81,7 @@ export default function Navbar() {
                   <motion.span
                     layoutId="activeTabPill"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 z-0 rounded-full bg-surface border border-line shadow-xs"
+                    className="absolute inset-0 z-0 rounded-full bg-white/15 border border-white/25 shadow-xs"
                   />
                 )}
                 <span className="relative z-10">{t.label}</span>
@@ -91,7 +97,7 @@ export default function Navbar() {
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-surface text-ink shadow-xs transition-colors hover:bg-line/40 md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#332820] bg-[#1a1410]/80 text-[#f0ebe3] shadow-xs transition-colors hover:bg-[#261d17] md:hidden"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
             {open ? (
@@ -110,7 +116,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-x-0 top-16 border-b border-line bg-paper/95 px-6 py-4 shadow-xl backdrop-blur-2xl md:hidden"
+              className="absolute inset-x-0 top-16 z-50 border-b border-[#332820] bg-[#130f0c]/98 px-6 py-4 shadow-2xl backdrop-blur-2xl md:hidden"
             >
               <div className="flex flex-col gap-1.5">
                 {tabs.map((t, idx) => {
@@ -130,8 +136,8 @@ export default function Navbar() {
                         }}
                         className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-all ${
                           active
-                            ? "bg-surface text-ink border-l-2 border-accent font-semibold shadow-xs"
-                            : "text-soft hover:bg-surface/70 hover:text-ink"
+                            ? "bg-[#1e1813] text-[#f0ebe3] border-l-2 border-accent font-semibold shadow-xs"
+                            : "text-[#a39a8e] hover:bg-[#1a1410] hover:text-[#f0ebe3]"
                         }`}
                       >
                         <span>{t.label}</span>

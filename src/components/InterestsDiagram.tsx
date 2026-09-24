@@ -46,10 +46,10 @@ export default function InterestsDiagram({ className = "" }: Props) {
           height={580}
           rx={36}
           fill="none"
-          stroke="#141414"
+          stroke="#f0ebe3"
           strokeWidth="1.5"
           strokeDasharray="4 6"
-          opacity="0.25"
+          opacity="0.2"
         />
 
         {/* concentric radar rings */}
@@ -58,10 +58,10 @@ export default function InterestsDiagram({ className = "" }: Props) {
           cy={300}
           r={240}
           fill="none"
-          stroke="#141414"
+          stroke="#f0ebe3"
           strokeWidth="1.2"
           strokeDasharray="6 8"
-          opacity="0.3"
+          opacity="0.25"
           animate={{ rotate: 360 }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
           style={{ originX: "300px", originY: "300px" }}
@@ -71,28 +71,28 @@ export default function InterestsDiagram({ className = "" }: Props) {
           cy={300}
           r={170}
           fill="none"
-          stroke="#141414"
+          stroke="#f0ebe3"
           strokeWidth="1.2"
-          opacity="0.3"
+          opacity="0.22"
         />
         <circle
           cx={300}
           cy={300}
           r={100}
           fill="none"
-          stroke="#141414"
+          stroke="#f0ebe3"
           strokeWidth="1.2"
           strokeDasharray="3 4"
-          opacity="0.35"
+          opacity="0.3"
         />
 
         {/* crosshair center axes */}
-        <line x1={300} y1={20} x2={300} y2={580} stroke="#141414" strokeWidth="1.5" opacity="0.35" />
-        <line x1={20} y1={300} x2={580} y2={300} stroke="#141414" strokeWidth="1.5" opacity="0.35" />
+        <line x1={300} y1={20} x2={300} y2={580} stroke="#f0ebe3" strokeWidth="1.5" opacity="0.25" />
+        <line x1={20} y1={300} x2={580} y2={300} stroke="#f0ebe3" strokeWidth="1.5" opacity="0.25" />
 
         {/* diagonal axes */}
-        <line x1={20} y1={20} x2={580} y2={580} stroke="#141414" strokeWidth="1.2" strokeDasharray="4 6" opacity="0.25" />
-        <line x1={20} y1={580} x2={580} y2={20} stroke="#141414" strokeWidth="1.2" strokeDasharray="4 6" opacity="0.25" />
+        <line x1={20} y1={20} x2={580} y2={580} stroke="#f0ebe3" strokeWidth="1.2" strokeDasharray="4 6" opacity="0.18" />
+        <line x1={20} y1={580} x2={580} y2={20} stroke="#f0ebe3" strokeWidth="1.2" strokeDasharray="4 6" opacity="0.18" />
 
         {/* animated scattered accent squares */}
         {dots.map((d) => (
@@ -102,8 +102,8 @@ export default function InterestsDiagram({ className = "" }: Props) {
             y={d.y}
             width={14}
             height={14}
-            fill="#9ae634"
-            stroke="#141414"
+            fill="#C6A15B"
+            stroke="#130f0c"
             strokeWidth="1.5"
             animate={{
               scale: [1, 1.3, 1],
@@ -119,7 +119,7 @@ export default function InterestsDiagram({ className = "" }: Props) {
           />
         ))}
 
-        {/* center piece — LG Logo badge with neon green accent border (still & fixed) */}
+        {/* center piece — LG Logo badge with gold accent border (still & fixed) */}
         <g>
           {/* Background card */}
           <rect
@@ -128,10 +128,10 @@ export default function InterestsDiagram({ className = "" }: Props) {
             width={124}
             height={124}
             rx={24}
-            fill="#000000"
-            stroke="#82ff3f"
-            strokeWidth="3"
-            style={{ filter: "drop-shadow(0 8px 24px rgba(130, 255, 63, 0.28))" }}
+            fill="#130f0c"
+            stroke="#C6A15B"
+            strokeWidth="2.5"
+            style={{ filter: "drop-shadow(0 8px 24px rgba(198, 161, 91, 0.28))" }}
           />
           {/* Custom LG Logo Image */}
           <image
@@ -161,12 +161,14 @@ export default function InterestsDiagram({ className = "" }: Props) {
                 width={150}
                 height={52}
                 rx={12}
-                fill={isHovered ? "#82ff3f" : "#ffffff"}
-                stroke="#141414"
-                strokeWidth={isHovered ? "2.5" : "2"}
+                fill={isHovered ? "#C6A15B" : "#18130f"}
+                stroke={isHovered ? "#C6A15B" : "#332820"}
+                strokeWidth={isHovered ? "2.5" : "1.5"}
                 className="transition-all duration-200"
                 style={{
-                  filter: isHovered ? "drop-shadow(0 6px 16px rgba(130,255,63,0.4))" : "drop-shadow(0 2px 4px rgba(0,0,0,0.06))",
+                  filter: isHovered
+                    ? "drop-shadow(0 6px 16px rgba(198,161,91,0.4))"
+                    : "drop-shadow(0 4px 12px rgba(0,0,0,0.5))",
                 }}
               />
               <text
@@ -176,7 +178,7 @@ export default function InterestsDiagram({ className = "" }: Props) {
                 fontSize="18"
                 fontWeight="700"
                 letterSpacing="1.5"
-                fill="#141414"
+                fill={isHovered ? "#000000" : "#f0ebe3"}
                 fontFamily="'Space Grotesk', 'Inter', sans-serif"
                 className="transition-all duration-200"
               >
@@ -189,7 +191,7 @@ export default function InterestsDiagram({ className = "" }: Props) {
                   textAnchor="middle"
                   fontSize="10"
                   fontWeight="600"
-                  fill="#141414"
+                  fill="#000000"
                   letterSpacing="0.5"
                   fontFamily="'Inter', sans-serif"
                 >

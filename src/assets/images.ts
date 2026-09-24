@@ -1,6 +1,7 @@
 // Imported images — Vite bundles these and rewrites the URLs for the
 // production base path, so they work everywhere (dev + GitHub Pages).
 import logo from "./logo.png";
+import chessScene from "./photos/chess-scene.png";
 import chesscomLogo from "./photos/chesscom-logo.png";
 import badge from "./photos/badge.jpg";
 import bookCert from "./photos/book-cert.jpg";
@@ -24,6 +25,7 @@ import bookMockup from "./photos/book-mockup.jpg";
 
 export const images = {
   logo,
+  chessScene,
   chesscomLogo,
   badge,
   bookCert,

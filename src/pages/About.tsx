@@ -82,14 +82,14 @@ export default function About() {
       />
 
       {/* ---------- BIO ---------- */}
-      <section className="border-b border-line">
+      <section className="border-b border-white/10">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
-            <p className="eyebrow">Profile</p>
-            <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+            <p className="eyebrow on-photo">Profile</p>
+            <h1 className="on-photo mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">
               Focus & Pathway
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-soft">{site.bio}</p>
+            <p className="on-photo-soft mt-6 max-w-2xl text-lg leading-relaxed">{site.bio}</p>
           </Reveal>
 
           <Reveal delay={120}>
@@ -97,7 +97,7 @@ export default function About() {
               {facts.map((f) => (
                 <span
                   key={f}
-                  className="rounded-full border border-line bg-white/90 px-4 py-1.5 text-sm font-medium text-ink shadow-2xs backdrop-blur-sm"
+                  className="rounded-full border border-[#332820] bg-[#1a1410]/80 px-4 py-1.5 text-sm font-medium text-[#f0ebe3] shadow-2xs backdrop-blur-md"
                 >
                   {f}
                 </span>
@@ -108,16 +108,16 @@ export default function About() {
       </section>
 
       {/* ---------- BOXED SECTIONS (Banner & Foundations) ---------- */}
-      <section className="border-b border-line">
+      <section className="border-b border-white/10">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
-            <p className="eyebrow">Operating Principle</p>
+            <p className="eyebrow on-photo">Operating Principle</p>
           </Reveal>
 
           {/* Luxury Reference Banner Image with Rounded Corners */}
           <div className="mt-8 grid gap-6">
             <Reveal>
-              <div className="overflow-hidden rounded-3xl border border-white/10 shadow-2xl bg-black">
+              <div className="overflow-hidden rounded-3xl border border-[#332820] shadow-2xl bg-[#130f0c]">
                 <img
                   src={images.aboutBanner}
                   alt="Chess. Strategy. Explore. — Lakshya Gupta"
@@ -128,21 +128,21 @@ export default function About() {
 
             {/* Foundations & Education card */}
             <Reveal delay={100}>
-              <div className="rounded-3xl border border-line bg-surface/90 backdrop-blur-md p-8 shadow-xs sm:p-10">
+              <div className="rounded-3xl border border-[#332820] bg-[#16120e]/90 backdrop-blur-md p-6 shadow-md sm:p-10">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/70">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#a39a8e]">
                     Foundations & Timeline
                   </p>
                   <span className="text-xs font-bold font-mono text-accent">MILESTONES</span>
                 </div>
-                <div className="mt-6 grid gap-6 sm:grid-cols-2">
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   {education.map((e) => (
-                    <div key={e.name} className="rounded-2xl border border-line bg-white/70 backdrop-blur-xs p-5">
-                      <div className="flex items-baseline justify-between gap-4 border-b border-line pb-2">
-                        <p className="font-display text-base font-bold text-ink">{e.name}</p>
-                        <p className="text-xs font-semibold text-soft">{e.years}</p>
+                    <div key={e.name} className="rounded-2xl border border-[#332820]/70 bg-[#1e1813]/80 backdrop-blur-xs p-4 sm:p-5">
+                      <div className="flex items-baseline justify-between gap-4 border-b border-[#332820] pb-2">
+                        <p className="font-display text-base font-bold text-[#f0ebe3]">{e.name}</p>
+                        <p className="text-xs font-semibold text-accent">{e.years}</p>
                       </div>
-                      <p className="mt-2.5 text-sm text-soft">{e.detail}</p>
+                      <p className="mt-2.5 text-sm text-[#a39a8e]">{e.detail}</p>
                     </div>
                   ))}
                 </div>
@@ -153,27 +153,27 @@ export default function About() {
       </section>
 
       {/* ---------- CHESS (the main thing) ---------- */}
-      <section className="border-b border-line">
+      <section className="border-b border-white/10">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
-            <div className="flex flex-wrap items-start justify-between gap-6 rounded-3xl border border-line bg-surface/90 backdrop-blur-md p-8 shadow-xs sm:p-10">
-              <div className="flex items-center gap-5">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-ink text-paper shadow-sm">
-                  <ChessBoardIcon className="h-7 w-7 text-accent" />
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 rounded-3xl border border-[#332820] bg-[#16120e]/90 backdrop-blur-md p-6 shadow-md sm:p-10">
+              <div className="flex items-center gap-4 sm:gap-5">
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-[#241c16] text-[#f0ebe3] border border-[#332820] shadow-sm">
+                  <ChessBoardIcon className="h-6 w-6 sm:h-7 sm:w-7 text-accent" />
                 </div>
                 <div>
                   <p className="eyebrow">Competitive Pathway</p>
-                  <h2 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl text-ink">
+                  <h2 className="mt-1 font-display text-xl sm:text-2xl font-bold tracking-tight text-[#f0ebe3]">
                     Pursuit of {site.chess.goal}
                   </h2>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                 <a
                   href={site.links.chesscom}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn-primary"
+                  className="btn-primary text-center"
                 >
                   Chess.com Profile
                 </a>
@@ -181,7 +181,7 @@ export default function About() {
                   href={site.links.lichess}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn-ghost"
+                  className="btn-ghost text-center"
                 >
                   Lichess Profile
                 </a>
@@ -193,11 +193,11 @@ export default function About() {
           <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {site.chess.stats.map((s, i) => (
               <Reveal key={s.label} delay={i * 70}>
-                <div className="rounded-2xl border border-line bg-surface/90 backdrop-blur-md p-6 shadow-2xs transition-all hover:border-accent hover:shadow-md">
-                  <p className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+                <div className="rounded-2xl border border-[#332820] bg-[#16120e]/90 backdrop-blur-md p-6 shadow-xs transition-all hover:border-accent hover:shadow-[0_8px_24px_rgba(198,161,91,0.2)]">
+                  <p className="font-display text-3xl font-bold tracking-tight text-[#f0ebe3] sm:text-4xl">
                     <Counter value={s.value || "—"} />
                   </p>
-                  <p className="mt-2 text-sm font-medium text-soft">{s.label}</p>
+                  <p className="mt-2 text-sm font-medium text-[#a39a8e]">{s.label}</p>
                 </div>
               </Reveal>
             ))}
@@ -206,27 +206,27 @@ export default function About() {
       </section>
 
       {/* ---------- MOMENTS & ACHIEVEMENTS (Sideways Carousel) ---------- */}
-      <section className="border-b border-line">
+      <section className="border-b border-white/10">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <p className="eyebrow">Tournament Milestones</p>
-                <h2 className="h2">Selected Achievements</h2>
-                <p className="mt-3 max-w-2xl text-soft">
+                <p className="eyebrow on-photo">Tournament Milestones</p>
+                <h2 className="h2 on-photo">Selected Achievements</h2>
+                <p className="on-photo-soft mt-3 max-w-2xl">
                   Key moments and credentials across state, national, and FIDE rated circuits.
                 </p>
               </div>
 
               {/* Navigation Controls */}
               <div className="flex items-center gap-3">
-                <span className="font-mono text-xs text-soft">
+                <span className="on-photo-soft font-mono text-xs">
                   {activePhotoIdx + 1} / {achievements.length}
                 </span>
                 <button
                   type="button"
                   onClick={handlePrev}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-ink shadow-xs transition-colors hover:bg-accent hover:border-accent"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#332820] bg-[#1a1410] text-[#f0ebe3] shadow-xs transition-colors hover:bg-accent hover:text-black hover:border-accent"
                   aria-label="Previous milestone"
                 >
                   ←
@@ -234,7 +234,7 @@ export default function About() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-ink shadow-xs transition-colors hover:bg-accent hover:border-accent"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#332820] bg-[#1a1410] text-[#f0ebe3] shadow-xs transition-colors hover:bg-accent hover:text-black hover:border-accent"
                   aria-label="Next milestone"
                 >
                   →
@@ -247,7 +247,7 @@ export default function About() {
           <Reveal delay={100}>
             <div
               ref={carouselRef}
-              className="mt-10 overflow-hidden rounded-3xl border border-line bg-white shadow-lg cursor-ew-resize"
+              className="mt-10 overflow-hidden rounded-3xl border border-[#332820] bg-[#16120e] shadow-2xl cursor-ew-resize"
             >
               <div className="grid lg:grid-cols-[1.2fr_0.8fr]">
                 {/* Photo showcase with click to open lightbox */}
@@ -269,7 +269,7 @@ export default function About() {
                   </AnimatePresence>
 
                   <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/30">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-ink opacity-0 shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:opacity-100">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-black opacity-0 shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:opacity-100">
                       ↗
                     </span>
                   </div>
@@ -285,19 +285,19 @@ export default function About() {
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <span className="inline-block rounded-full bg-accent/20 px-3 py-1 text-xs font-bold text-ink">
+                      <span className="inline-block rounded-full bg-accent/20 px-3 py-1 text-xs font-bold text-accent">
                         {currentItem.tag}
                       </span>
-                      <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+                      <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-[#f0ebe3] sm:text-3xl">
                         {currentItem.title}
                       </h3>
-                      <p className="mt-4 text-base leading-relaxed text-soft">
+                      <p className="mt-4 text-base leading-relaxed text-[#a39a8e]">
                         {currentItem.detail}
                       </p>
                     </motion.div>
                   </AnimatePresence>
 
-                  <div className="mt-8 flex items-center justify-between border-t border-line pt-6">
+                  <div className="mt-8 flex items-center justify-between border-t border-[#332820] pt-6">
                     {/* Thumbnail dots */}
                     <div className="flex gap-2">
                       {achievements.map((a, i) => (
@@ -306,7 +306,7 @@ export default function About() {
                           type="button"
                           onClick={() => setActivePhotoIdx(i)}
                           className={`h-2.5 rounded-full transition-all duration-300 ${
-                            i === activePhotoIdx ? "w-8 bg-accent" : "w-2.5 bg-line hover:bg-soft"
+                            i === activePhotoIdx ? "w-8 bg-accent" : "w-2.5 bg-[#332820] hover:bg-[#a39a8e]"
                           }`}
                           aria-label={`Go to slide ${i + 1}`}
                         />
@@ -324,48 +324,48 @@ export default function About() {
       <section>
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
-            <p className="eyebrow">Creative Outlets</p>
-            <h2 className="h2">Strategy & Visual Archive</h2>
+            <p className="eyebrow on-photo">Creative Outlets</p>
+            <h2 className="h2 on-photo">Strategy & Visual Archive</h2>
           </Reveal>
 
           <Reveal delay={100}>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              <div className="group flex h-full flex-col justify-between rounded-3xl border border-line bg-surface/90 backdrop-blur-md p-8 shadow-2xs transition-shadow hover:shadow-lg hover:border-accent">
+              <div className="group flex h-full flex-col justify-between rounded-3xl border border-[#332820] bg-[#16120e]/90 backdrop-blur-md p-8 shadow-xs transition-all duration-200 hover:shadow-xl hover:border-accent">
                 <div>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-ink shadow-xs">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#241c16] text-[#f0ebe3] border border-[#332820] shadow-xs">
                     <YouTubeBrandIcon className="h-6 w-6" />
                   </div>
-                  <h3 className="mt-5 font-display text-2xl font-bold tracking-tight text-ink">
+                  <h3 className="mt-5 font-display text-2xl font-bold tracking-tight text-[#f0ebe3]">
                     Blockwise
                   </h3>
-                  <p className="mt-3 leading-relaxed text-soft">
+                  <p className="mt-3 leading-relaxed text-[#a39a8e]">
                     YouTube channel focusing on Minecraft PvP mechanics, systems, and game optimization.
                   </p>
                 </div>
                 <Link
                   to="/youtube"
-                  className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
+                  className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[#f0ebe3] transition-colors hover:text-accent"
                 >
                   <span>Visit Channel</span>
                   <ArrowRightIcon className="transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
               </div>
 
-              <div className="group flex h-full flex-col justify-between rounded-3xl border border-line bg-surface/90 backdrop-blur-md p-8 shadow-2xs transition-shadow hover:shadow-lg hover:border-accent">
+              <div className="group flex h-full flex-col justify-between rounded-3xl border border-[#332820] bg-[#16120e]/90 backdrop-blur-md p-8 shadow-xs transition-all duration-200 hover:shadow-xl hover:border-accent">
                 <div>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-ink shadow-xs">
-                    <ChessBoardIcon className="h-6 w-6 text-ink" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#241c16] text-[#f0ebe3] border border-[#332820] shadow-xs">
+                    <ChessBoardIcon className="h-6 w-6 text-[#f0ebe3]" />
                   </div>
-                  <h3 className="mt-5 font-display text-2xl font-bold tracking-tight text-ink">
+                  <h3 className="mt-5 font-display text-2xl font-bold tracking-tight text-[#f0ebe3]">
                     Photo Vault & Archive
                   </h3>
-                  <p className="mt-3 leading-relaxed text-soft">
+                  <p className="mt-3 leading-relaxed text-[#a39a8e]">
                     Photographic log documenting classical tournaments, national travels, and milestones.
                   </p>
                 </div>
                 <Link
                   to="/gallery"
-                  className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
+                  className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[#f0ebe3] transition-colors hover:text-accent"
                 >
                   <span>Explore Vault</span>
                   <ArrowRightIcon className="transition-transform duration-200 group-hover:translate-x-1" />

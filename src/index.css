@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  /* Black & Neon Green High-Tech Theme */
-  --color-paper: #ffffff;
-  --color-card: #ffffff;
-  --color-surface: #fbfbfb;
-  --color-surface-dark: #090a09;
-  --color-ink: #121312;
-  --color-ink-deep: #000000;
-  --color-soft: #666666;
-  --color-line: #ececec;
-  --color-line-dark: #222222;
-  --color-accent: #82ff3f;
-  --color-accent-hover: #9bfb5c;
-  --color-accent-glow: rgba(130, 255, 63, 0.25);
+  /* Warm Dark Wooden Chess Theme */
+  --color-paper: #130f0c;
+  --color-card: #18130f;
+  --color-surface: #16120e;
+  --color-surface-dark: #0e0b09;
+  --color-ink: #f0ebe3;
+  --color-ink-deep: #ffffff;
+  --color-soft: #a39a8e;
+  --color-line: #332820;
+  --color-line-dark: #241c16;
+  --color-accent: #C6A15B;
+  --color-accent-hover: #D7B46F;
+  --color-accent-glow: rgba(198, 161, 91, 0.25);
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -25,35 +25,35 @@ html {
 }
 
 body {
-  @apply overflow-x-hidden bg-paper font-sans text-ink antialiased;
+  @apply overflow-x-hidden bg-[#130f0c] font-sans text-[#f0ebe3] antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* neon green text selection */
+/* warm gold text selection */
 ::selection {
-  background: #9ae634;
+  background: #C6A15B;
   color: #000000;
 }
 
 /* --- shared text/button styles --- */
 .eyebrow {
-  @apply text-xs font-semibold uppercase tracking-[0.2em] text-ink/70;
+  @apply text-xs font-semibold uppercase tracking-[0.2em] text-[#a39a8e];
 }
 
 .h2 {
-  @apply mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl;
+  @apply mt-3 font-display text-3xl font-bold tracking-tight text-[#f0ebe3] sm:text-4xl;
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper shadow-sm transition-all duration-200 hover:bg-black hover:shadow-md hover:ring-2 hover:ring-accent/40 active:scale-[0.98];
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-black shadow-sm transition-all duration-200 hover:bg-accent-hover hover:shadow-md hover:ring-2 hover:ring-accent/40 active:scale-[0.98];
 }
 
 .btn-ghost {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 bg-white/80 px-6 py-3 text-sm font-medium text-ink backdrop-blur-sm transition-all duration-200 hover:border-ink hover:bg-slate-50 active:scale-[0.98];
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-[#332820] bg-[#1a1410]/80 px-6 py-3 text-sm font-medium text-[#f0ebe3] backdrop-blur-sm transition-all duration-200 hover:border-white/40 hover:bg-[#261d17] hover:text-white active:scale-[0.98];
 }
 
 .btn-accent {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-ink shadow-sm transition-all duration-200 hover:bg-accent-hover hover:shadow-md active:scale-[0.98];
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-black shadow-sm transition-all duration-200 hover:bg-accent-hover hover:shadow-md active:scale-[0.98];
 }
 
 /* Live dot animation */
@@ -97,8 +97,8 @@ body {
   animation: none;
   transform: translateY(-10px) scale(1.04);
   z-index: 10;
-  border-color: #9ae634;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
+  border-color: #C6A15B;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -138,19 +138,34 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #130f0c;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d4;
+  background: #2e241c;
   border-radius: 8px;
-  border: 2px solid #ffffff;
+  border: 2px solid #130f0c;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #82ff3f;
+  background: #C6A15B;
 }
 * {
   scrollbar-width: thin;
-  scrollbar-color: #d4d4d4 #ffffff;
+  scrollbar-color: #2e241c #130f0c;
+}
+
+/* --- text sitting directly on the background photograph ---
+   Unlayered on purpose: these beat Tailwind's layered colour utilities, so a
+   page intro or section heading can go light over the photo while everything
+   inside a white card keeps its dark ink. The soft shadow is what keeps copy
+   readable where the photo runs bright (lamp, window). */
+.on-photo {
+  color: #ffffff;
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.55);
+}
+
+.on-photo-soft {
+  color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
 }
 
 /* --- custom cursor --- */
@@ -173,15 +188,15 @@ html.has-custom-cursor * {
 .cursor-dot {
   width: 6px;
   height: 6px;
-  background: #82ff3f;
+  background: #C6A15B;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9);
 }
 
 .cursor-ring {
   width: 32px;
   height: 32px;
-  border: 1.5px solid rgba(130, 255, 63, 0.6);
-  background: rgba(130, 255, 63, 0.05);
+  border: 1.5px solid rgba(198, 161, 91, 0.6);
+  background: rgba(198, 161, 91, 0.05);
   transition:
     width 0.22s ease,
     height 0.22s ease,
@@ -192,8 +207,8 @@ html.has-custom-cursor * {
 .cursor-ring.is-hover {
   width: 48px;
   height: 48px;
-  border-color: #82ff3f;
-  background: rgba(130, 255, 63, 0.15);
+  border-color: #C6A15B;
+  background: rgba(198, 161, 91, 0.15);
 }
 
 .cursor-ring.is-down {

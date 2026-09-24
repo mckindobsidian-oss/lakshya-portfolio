@@ -62,14 +62,14 @@ export default function LightboxModal({
             exit={{ scale: 0.94, opacity: 0, y: 16 }}
             transition={{ type: "spring", stiffness: 320, damping: 28 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-white/20 bg-paper shadow-2xl lg:flex-row"
+            className="relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-[#332820] bg-[#16120e] shadow-2xl lg:flex-row"
           >
             {/* Close Button */}
             <button
               type="button"
               onClick={onClose}
               aria-label="Close image modal"
-              className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-ink/75 text-paper backdrop-blur-md transition-all hover:scale-110 hover:bg-ink"
+              className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-[#1e1813] text-[#f0ebe3] border border-[#332820] backdrop-blur-md transition-all hover:scale-110 hover:bg-accent hover:text-black hover:border-accent"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4">
                 <path d="M18 6L6 18M6 6l12 12" />
@@ -77,7 +77,7 @@ export default function LightboxModal({
             </button>
 
             {/* Photo preview container */}
-            <div className="relative flex flex-1 items-center justify-center bg-[#141414] p-4 sm:p-8">
+            <div className="relative flex flex-1 items-center justify-center bg-[#0e0b09] p-4 sm:p-8">
               <img
                 src={item.photo}
                 alt={item.title}
@@ -90,7 +90,7 @@ export default function LightboxModal({
                   type="button"
                   onClick={onPrev}
                   aria-label="Previous item"
-                  className="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-all hover:scale-110 hover:bg-black/90"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-[#130f0c]/80 text-[#f0ebe3] border border-[#332820] backdrop-blur-md transition-all hover:scale-110 hover:bg-accent hover:text-black hover:border-accent"
                 >
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-5 w-5">
                     <path d="M15 18l-6-6 6-6" />
@@ -103,7 +103,7 @@ export default function LightboxModal({
                   type="button"
                   onClick={onNext}
                   aria-label="Next item"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-all hover:scale-110 hover:bg-black/90"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-[#130f0c]/80 text-[#f0ebe3] border border-[#332820] backdrop-blur-md transition-all hover:scale-110 hover:bg-accent hover:text-black hover:border-accent"
                 >
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-5 w-5">
                     <path d="M9 18l6-6-6-6" />
@@ -113,16 +113,16 @@ export default function LightboxModal({
             </div>
 
             {/* Details panel */}
-            <div className="flex w-full flex-col justify-between border-t border-line bg-surface p-6 lg:w-[320px] lg:border-l lg:border-t-0 lg:p-8">
+            <div className="flex w-full flex-col justify-between border-t border-[#332820] bg-[#16120e] p-6 lg:w-[320px] lg:border-l lg:border-t-0 lg:p-8">
               <div>
                 <span className="eyebrow">{item.tag}</span>
-                <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight text-ink">
+                <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight text-[#f0ebe3]">
                   {item.title}
                 </h3>
-                <p className="mt-4 text-sm leading-relaxed text-soft">{item.detail}</p>
+                <p className="mt-4 text-sm leading-relaxed text-[#a39a8e]">{item.detail}</p>
               </div>
 
-              <div className="mt-8 border-t border-line/60 pt-4 text-xs font-semibold uppercase tracking-wider text-accent">
+              <div className="mt-8 border-t border-[#332820] pt-4 text-xs font-semibold uppercase tracking-wider text-accent">
                 Official Milestone
               </div>
             </div>

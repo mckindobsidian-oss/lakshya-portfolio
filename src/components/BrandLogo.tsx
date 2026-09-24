@@ -17,13 +17,13 @@ export default function BrandLogo({
   if (variant === "badge") {
     return (
       <div
-        className={`flex items-center justify-center rounded-xl bg-ink border border-ink/20 shadow-xs shrink-0 overflow-hidden ${className}`}
+        className={`flex items-center justify-center rounded-xl bg-[#18130f] border border-[#332820] shadow-md shrink-0 overflow-hidden ${className}`}
         style={{ width: size, height: size }}
       >
         <img
           src={logoImg}
           alt="Lakshya Gupta"
-          className="h-[72%] w-[72%] object-contain select-none"
+          className="h-[78%] w-[78%] object-contain select-none"
         />
       </div>
     );

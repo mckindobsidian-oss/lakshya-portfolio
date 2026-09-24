@@ -116,17 +116,17 @@ export default function Gallery() {
       />
 
       {/* ---------- HERO ---------- */}
-      <section className="border-b border-line">
+      <section className="border-b border-white/10">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-ink shadow-2xs">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#332820] bg-[#1a1410]/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#f0ebe3] shadow-2xs backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-accent status-live-dot" />
               <span>Photo Vault · Visual Journey</span>
             </div>
-            <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h1 className="on-photo mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
               Photo Vault
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-soft">
+            <p className="on-photo-soft mt-5 max-w-2xl text-lg leading-relaxed">
               Real moments, travels, and photographic captures. Click any card to inspect the full-resolution photo.
             </p>
           </Reveal>
@@ -141,8 +141,8 @@ export default function Gallery() {
                   onClick={() => setActiveCategory(cat)}
                   className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 ${
                     activeCategory === cat
-                      ? "bg-ink text-paper shadow-xs"
-                      : "border border-line bg-white text-soft hover:border-ink hover:text-ink"
+                      ? "bg-accent text-black shadow-xs font-bold"
+                      : "border border-[#332820] bg-[#1a1410]/80 text-[#a39a8e] hover:border-white/40 hover:text-white"
                   }`}
                 >
                   {cat}
@@ -167,17 +167,17 @@ export default function Gallery() {
                 transition={{ duration: 0.3, delay: idx * 0.04 }}
                 onClick={() => handleOpenPhoto(item)}
                 whileHover={{ y: -6 }}
-                className="group flex cursor-pointer flex-col justify-between overflow-hidden rounded-3xl border border-line bg-white shadow-xs transition-all duration-300 hover:border-accent hover:shadow-xl"
+                className="group flex cursor-pointer flex-col justify-between overflow-hidden rounded-3xl border border-[#332820] bg-[#16120e] shadow-xs transition-all duration-300 hover:border-accent hover:shadow-2xl"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/5">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0e0b09]">
                   <img
                     src={item.photo}
                     alt={item.title}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-106"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/25">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-ink opacity-0 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:opacity-100">
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/30">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-black opacity-0 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:opacity-100">
                       ↗
                     </span>
                   </div>
@@ -186,19 +186,19 @@ export default function Gallery() {
                 <div className="flex flex-1 flex-col justify-between p-6">
                   <div>
                     <div className="flex items-center justify-between">
-                      <span className="inline-block rounded-full bg-accent/20 px-2.5 py-0.5 text-xs font-bold text-ink">
+                      <span className="inline-block rounded-full bg-accent/20 px-2.5 py-0.5 text-xs font-bold text-accent">
                         {item.tag}
                       </span>
                     </div>
-                    <h3 className="mt-3 font-display text-lg font-bold tracking-tight text-ink">
+                    <h3 className="mt-3 font-display text-lg font-bold tracking-tight text-[#f0ebe3]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-soft">
+                    <p className="mt-2 text-sm leading-relaxed text-[#a39a8e]">
                       {item.desc}
                     </p>
                   </div>
 
-                  <div className="mt-5 border-t border-line pt-3 text-xs font-semibold text-accent">
+                  <div className="mt-5 border-t border-[#332820] pt-3 text-xs font-semibold text-accent">
                     View Photo ↗
                   </div>
                 </div>

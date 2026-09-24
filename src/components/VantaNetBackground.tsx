@@ -8,7 +8,8 @@ import NET from "vanta/dist/vanta.net.min";
  * - Full-viewport dense interconnected 3D particle network.
  * - Light neutral gray background (#dde2e8) with neon-lime (#82ff3f) nodes & fine connecting lines.
  * - Real-time mouse POV parallax and smooth scroll-depth reactivity.
- * - Preserves the 70% white translucent sheet overlay sitting directly above it.
+ * - Preserves the white translucent sheet overlay sitting directly above it.
+ * - Sheet opacity is the master knob for how dark the page backdrop reads.
  */
 export default function VantaNetBackground() {
   const elRef = useRef<HTMLDivElement>(null);
@@ -34,8 +35,8 @@ export default function VantaNetBackground() {
         minWidth: 200.0,
         scale: 1.0,
         scaleMobile: 1.0,
-        color: 0x82ff3f,
-        backgroundColor: 0x0a0b0a,
+        color: 0xC6A15B,
+        backgroundColor: 0x130f0c,
         points: isMobile ? 9.0 : 13.0,
         maxDistance: isMobile ? 18.0 : 21.0,
         spacing: isMobile ? 17.0 : 15.0,
@@ -73,10 +74,10 @@ export default function VantaNetBackground() {
         className="fixed inset-0 -z-20 h-full w-full"
         aria-hidden="true"
       />
-      {/* 70% White Translucent Sheet Overlay — PRESERVED EXACTLY AS REQUESTED */}
+      {/* White Translucent Sheet Overlay — darker sheet = net shows through more */}
       <div
         className="fixed inset-0 -z-10 h-full w-full pointer-events-none"
-        style={{ background: "rgba(255, 255, 255, 0.70)" }}
+        style={{ background: "rgba(255, 255, 255, 0.55)" }}
         aria-hidden="true"
       />
     </>

@@ -9,23 +9,23 @@ export default function NotFound() {
       <div className="mx-auto w-full max-w-2xl text-center">
         <Reveal>
           {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-line bg-white/90 px-3.5 py-1.5 shadow-2xs backdrop-blur-xs">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#332820] bg-[#1a1410]/80 px-3.5 py-1.5 shadow-2xs backdrop-blur-md">
             <span className="h-2 w-2 rounded-full bg-accent status-live-dot" />
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/70">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#a39a8e]">
               404 · Out of Bounds
             </p>
           </div>
 
           {/* Large Hero 404 Graphic */}
-          <h1 className="mt-8 font-display text-7xl font-extrabold tracking-tight text-ink sm:text-9xl">
+          <h1 className="on-photo mt-8 font-display text-7xl font-extrabold tracking-tight sm:text-9xl">
             4<span className="text-accent">0</span>4
           </h1>
 
-          <h2 className="mt-4 font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+          <h2 className="on-photo mt-4 font-display text-2xl font-bold tracking-tight sm:text-3xl">
             Lost on the board?
           </h2>
 
-          <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-soft">
+          <p className="on-photo-soft mx-auto mt-4 max-w-md text-base leading-relaxed">
             The page you are looking for doesn't exist, has been moved, or this move is out of bounds. Let's get you back into the game.
           </p>
 
