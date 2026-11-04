@@ -62,7 +62,7 @@ export default function LightboxModal({
             exit={{ scale: 0.94, opacity: 0, y: 16 }}
             transition={{ type: "spring", stiffness: 320, damping: 28 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-[#332820] bg-[#16120e] shadow-2xl lg:flex-row"
+            className="relative flex max-h-[90dvh] w-full max-w-4xl flex-col overflow-y-auto overscroll-contain rounded-3xl border border-[#332820] bg-[#16120e] shadow-2xl lg:flex-row"
           >
             {/* Close Button */}
             <button
@@ -81,7 +81,7 @@ export default function LightboxModal({
               <img
                 src={item.photo}
                 alt={item.title}
-                className="max-h-[50vh] w-auto max-w-full rounded-xl object-contain shadow-2xl lg:max-h-[75vh]"
+                className="max-h-[42dvh] w-auto max-w-full rounded-xl object-contain shadow-2xl lg:max-h-[75vh]"
               />
 
               {/* Prev / Next controls */}

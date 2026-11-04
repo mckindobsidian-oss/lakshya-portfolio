@@ -1,3 +1,8 @@
+import amerFort from "./photos/amer-fort.jpg";
+import albertHall from "./photos/albert-hall-night.jpg";
+import cityPalace from "./photos/city-palace.jpg";
+import jalMahal from "./photos/jal-mahal.jpg";
+import acmCertificate from "./photos/acm-certificate.jpeg";
 // Imported images — Vite bundles these and rewrites the URLs for the
 // production base path, so they work everywhere (dev + GitHub Pages).
 import logo from "./logo.png";
@@ -24,6 +29,7 @@ import aboutBanner from "./photos/about-banner.png";
 import bookMockup from "./photos/book-mockup.jpg";
 
 export const images = {
+  amerFort, albertHall, cityPalace, jalMahal, acmCertificate,
   logo,
   chessScene,
   chesscomLogo,

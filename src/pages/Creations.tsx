@@ -1,6 +1,6 @@
 import Reveal from "../components/Reveal";
 import { ExternalIcon } from "../components/Icons";
-import { creations } from "../content";
+import { creations, northProjectLab } from "../content";
 
 export default function Creations() {
   const book = creations[0];
@@ -12,14 +12,32 @@ export default function Creations() {
           <Reveal>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#332820] bg-[#1a1410]/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#f0ebe3] shadow-2xs backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-accent status-live-dot" />
-              <span>Published Works & Research</span>
+              <span>Projects & Published Works</span>
             </div>
             <h1 className="on-photo mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">
               Selected Works
             </h1>
             <p className="on-photo-soft mt-5 max-w-2xl text-lg leading-relaxed">
-              Published literature and strategic works — exploring concepts across astronomy, logic, and creative inquiry.
+              Digital products and published works — exploring productivity, astronomy, and creative ideas.
             </p>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <article className="mt-10 overflow-hidden rounded-3xl border border-line bg-surface">
+              <div className="grid md:grid-cols-2">
+                <div className="relative flex min-h-60 items-center justify-center overflow-hidden border-b border-line bg-[#1e1813] p-8 md:border-b-0 md:border-r">
+                  <div aria-hidden="true" className="absolute inset-0 opacity-20" style={{ backgroundImage: "linear-gradient(#C6A15B33 1px, transparent 1px), linear-gradient(90deg, #C6A15B33 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+                  <div className="relative text-center"><p className="font-mono text-xs tracking-[0.3em] text-accent">NORTH PROJECT LAB</p><p className="mt-5 font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">Make room<br />for focus.</p><p className="mt-5 text-xs text-soft">A productivity ecosystem by Lakshya Gupta</p></div>
+                </div>
+                <div className="flex flex-col items-start justify-center p-6 sm:p-10">
+                  <p className="eyebrow">{northProjectLab.tag}</p>
+                  <h2 className="mt-4 font-display text-3xl font-bold text-ink">{northProjectLab.title}</h2>
+                  <p className="mt-4 leading-relaxed text-soft">{northProjectLab.detail}</p>
+                  <a href={northProjectLab.href} target="_blank" rel="noreferrer" className="btn-primary mt-7">Explore North Project Lab <ExternalIcon className="h-4 w-4 shrink-0" /></a>
+                  <p className="mt-3 text-xs text-soft">northprojectlab.vercel.app</p>
+                </div>
+              </div>
+            </article>
           </Reveal>
 
           {book && (
@@ -27,12 +45,12 @@ export default function Creations() {
               <div className="mt-12 overflow-hidden rounded-3xl border border-[#332820] bg-[#16120e] shadow-xl transition-all duration-300 hover:border-accent hover:shadow-2xl">
                 <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
                   {/* book cover showcase panel — full cover */}
-                  <div className="relative overflow-hidden bg-[#0e0b09] min-h-[340px] lg:min-h-[460px]">
+                  <div className="relative overflow-hidden bg-[#0e0b09] aspect-[4/3] lg:aspect-auto lg:min-h-[460px]">
                     {book.cover ? (
                       <img
                         src={book.cover}
                         alt={`${book.title} — book cover`}
-                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                        className="h-full w-full object-contain transition-transform duration-700 hover:scale-105"
                       />
                     ) : (
                       <div className="flex h-full w-full flex-col items-center justify-center p-8 bg-[#1e1813] text-[#f0ebe3]">

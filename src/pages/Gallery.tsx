@@ -14,6 +14,10 @@ type GalleryPhoto = {
 };
 
 const photos: GalleryPhoto[] = [
+  { id: "jaipur-amer", title: "Amer Fort · Through the Arch", category: "Landmarks", tag: "Jaipur · Amer Fort", desc: "An arched passage at Amer Fort frames weathered sandstone walls, the town below, and the rugged hills beyond. A quiet play of shade, sky, and centuries of architecture.", photo: images.amerFort },
+  { id: "jaipur-albert", title: "Albert Hall Museum · After Dark", category: "Landmarks", tag: "Jaipur · Albert Hall Museum", desc: "Albert Hall Museum illuminated against the night sky. Warm light picks out its layered arches, balconies, and domed pavilions, turning the museum facade into a study in symmetry.", photo: images.albertHall },
+  { id: "jaipur-palace", title: "City Palace · Courtyard Geometry", category: "Landmarks", tag: "Jaipur · City Palace", desc: "Rose-colored walls, delicate lattice windows, and white painted borders in Jaipur’s City Palace. Repeating arches and a domed corner pavilion give this sunlit courtyard its rhythm.", photo: images.cityPalace },
+  { id: "jaipur-jal", title: "Jal Mahal · Palace on the Water", category: "Landmarks", tag: "Jaipur · Man Sagar Lake", desc: "Jal Mahal rises from Man Sagar Lake, its pale domes and rooftop greenery set against the hills. Rippling water and a passing bird bring movement to the still palace.", photo: images.jalMahal },
   {
     id: "photo-1",
     title: "Shri Krishna Arjun Kapidhwaj Rath",

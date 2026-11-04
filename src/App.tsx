@@ -22,6 +22,7 @@ import YouTube from "./pages/YouTube";
 /* buttery smooth scrolling across the whole site */
 function SmoothScroll() {
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse), (prefers-reduced-motion: reduce)").matches) return;
     const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
     // expose the instance so other parts (e.g. the context menu) can animate scrolls
     (window as unknown as { __lenis?: Lenis }).__lenis = lenis;

@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import Counter from "../components/Counter";
-import LightboxModal, { type LightboxItem } from "../components/LightboxModal";
+import LightboxModal from "../components/LightboxModal";
 import Reveal from "../components/Reveal";
 import { ArrowRightIcon, ChessBoardIcon, YouTubeBrandIcon } from "../components/Icons";
 import { achievements, site } from "../content";
@@ -22,11 +22,21 @@ const education = [
   { name: "Chess & Strategy", years: "2023 — Present", detail: "FIDE rated tournament circuit & master preparation" },
 ];
 
+const principles = [
+  { name: "Chess", headline: "Every move has a purpose.", detail: "Deep calculation, patient preparation, and lessons from every tournament. The next move starts with understanding the position.", to: "#chess-pathway", action: "Explore my chess pathway", photo: images.aboutChessDesk },
+  { name: "Strategy", headline: "Think deeper. Build better.", detail: "The same curiosity carries into writing and creating: explore an idea, test it, and keep refining. From Life Beyond Earth to Blockwise.", to: "/creations", action: "See what I create", photo: images.bookMockup },
+  { name: "Explore", headline: "Stay curious beyond the board.", detail: "New places, fresh perspectives, and moments worth keeping. A visual record of the world between tournaments.", to: "/gallery", action: "Explore the photo vault", photo: images.brahmaSarovarWide },
+];
+
 export default function About() {
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
-  const [selectedPhoto, setSelectedPhoto] = useState<LightboxItem | null>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const isScrollingRef = useRef(false);
+  const [isPhotoOpen, setIsPhotoOpen] = useState(false);
+  const [certificateOpen, setCertificateOpen] = useState(false);
+
+  const [activePrinciple, setActivePrinciple] = useState(0);
+  const touchStart = useRef<number | null>(null);
+  const reducedMotion = useReducedMotion();
+  const principle = principles[activePrinciple];
 
   const currentItem = achievements[activePhotoIdx];
 
@@ -38,47 +48,20 @@ export default function About() {
     setActivePhotoIdx((prev) => (prev - 1 + achievements.length) % achievements.length);
   };
 
-  // Lock page scrolling when mouse wheel is over carousel, and smoothly change photos sideways
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-
-    const onWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      if (isScrollingRef.current) return;
-
-      const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-      if (Math.abs(delta) < 15) return;
-
-      isScrollingRef.current = true;
-      if (delta > 0) {
-        setActivePhotoIdx((prev) => (prev + 1) % achievements.length);
-      } else {
-        setActivePhotoIdx((prev) => (prev - 1 + achievements.length) % achievements.length);
-      }
-
-      setTimeout(() => {
-        isScrollingRef.current = false;
-      }, 350);
-    };
-
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => {
-      el.removeEventListener("wheel", onWheel);
-    };
-  }, []);
-
   return (
     <>
       <LightboxModal
-        item={selectedPhoto}
-        onClose={() => setSelectedPhoto(null)}
+        item={isPhotoOpen ? currentItem : null}
+        onClose={() => setIsPhotoOpen(false)}
         onPrev={handlePrev}
         onNext={handleNext}
         hasPrev={true}
         hasNext={true}
+      />
+
+      <LightboxModal
+        item={certificateOpen ? { title: "Arena Candidate Master", tag: "FIDE · 2026", detail: "Diploma awarded to Lakshya Gupta of India for obtaining the Arena Candidate Master title in 2026.", photo: images.acmCertificate } : null}
+        onClose={() => setCertificateOpen(false)}
       />
 
       {/* ---------- BIO ---------- */}
@@ -107,6 +90,31 @@ export default function About() {
         </div>
       </section>
 
+      <section className="border-b border-white/10" aria-labelledby="chess-titles">
+        <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+          <Reveal>
+            <p className="eyebrow on-photo">Chess Credentials</p>
+            <h2 id="chess-titles" className="h2 on-photo">Titles</h2>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-[#332820] bg-[#16120e]/90 p-6 sm:p-8">
+                <p className="eyebrow">Arena Title</p>
+                <p className="mt-4 font-display text-4xl font-bold text-accent">{site.chess.title}</p>
+                <h3 className="mt-3 text-sm text-soft">{site.chess.titleName}</h3>
+                <button type="button" onClick={() => setCertificateOpen(true)} className="group mt-5 flex w-full items-center gap-4 rounded-xl border border-line bg-black/20 p-3 text-left transition-colors hover:border-accent focus-visible:outline-accent">
+                  <img src={images.acmCertificate} alt="FIDE Arena Candidate Master diploma for Lakshya Gupta, 2026" className="h-20 w-14 shrink-0 rounded bg-white object-contain" loading="lazy" />
+                  <span><span className="block text-sm font-medium text-ink">View ACM certificate ↗</span><span className="mt-1 block text-xs text-soft">FIDE diploma · 2026</span></span>
+                </button>
+              </div>
+              <div className="rounded-2xl border border-[#332820] bg-[#16120e]/90 p-6 sm:p-8" aria-labelledby="world-chess-rating">
+                <h3 id="world-chess-rating" className="eyebrow">World Chess Rating</h3>
+                <p className="mt-4 font-display text-4xl font-bold text-accent"><Counter value={site.chess.worldRating} /></p>
+                <p className="mt-3 text-sm text-soft">Along the pathway to {site.chess.goal}</p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ---------- BOXED SECTIONS (Banner & Foundations) ---------- */}
       <section className="border-b border-white/10">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
@@ -114,15 +122,26 @@ export default function About() {
             <p className="eyebrow on-photo">Operating Principle</p>
           </Reveal>
 
-          {/* Luxury Reference Banner Image with Rounded Corners */}
-          <div className="mt-8 grid gap-6">
+          <div className="mt-6 grid gap-6">
             <Reveal>
-              <div className="overflow-hidden rounded-3xl border border-[#332820] shadow-2xl bg-[#130f0c]">
-                <img
-                  src={images.aboutBanner}
-                  alt="Chess. Strategy. Explore. — Lakshya Gupta"
-                  className="h-auto w-full object-cover"
-                />
+              <div className="overflow-hidden rounded-3xl border border-line bg-surface">
+                <div className="grid grid-cols-3 border-b border-line" role="group" aria-label="Explore my operating principles">
+                  {principles.map((item, index) => (
+                    <button key={item.name} type="button" aria-pressed={activePrinciple === index} onClick={() => setActivePrinciple(index)} className={`min-h-16 border-b-2 px-4 py-5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-[-4px] ${activePrinciple === index ? "border-accent bg-accent/10 text-accent" : "border-transparent text-soft hover:bg-white/5 hover:text-ink"}`}>
+                      <span className="mr-2 font-mono text-xs opacity-60">0{index + 1}</span>{item.name}
+                    </button>
+                  ))}
+                </div>
+                <div className="grid sm:grid-cols-[1.1fr_1fr]">
+                  <div className="flex min-h-72 flex-col items-start justify-center p-7 sm:p-10" aria-live="polite" aria-atomic="true">
+                    <h2 className="font-display text-3xl font-bold leading-tight text-ink">{principle.headline}</h2>
+                    <p className="mt-5 max-w-md text-sm leading-relaxed text-soft">{principle.detail}</p>
+                    {principle.to.startsWith("#") ? <button type="button" onClick={() => document.getElementById("chess-pathway")?.scrollIntoView({ behavior: reducedMotion ? "instant" : "smooth" })} className="mt-7 inline-flex items-center gap-2 text-sm text-accent">{principle.action}<ArrowRightIcon /></button> : <Link to={principle.to} className="mt-7 inline-flex items-center gap-2 text-sm text-accent">{principle.action}<ArrowRightIcon /></Link>}
+                  </div>
+                  <div className="relative min-h-56 overflow-hidden border-t border-line sm:border-l sm:border-t-0">
+                    <motion.img key={principle.photo} src={principle.photo} alt={principle.name === "Chess" ? "Chess study desk" : principle.name === "Strategy" ? "Life Beyond Earth book" : "Brahma Sarovar panorama"} initial={{ opacity: reducedMotion ? 1 : 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="absolute inset-0 h-full w-full object-cover" />
+                  </div>
+                </div>
               </div>
             </Reveal>
 
@@ -138,7 +157,7 @@ export default function About() {
                 <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   {education.map((e) => (
                     <div key={e.name} className="rounded-2xl border border-[#332820]/70 bg-[#1e1813]/80 backdrop-blur-xs p-4 sm:p-5">
-                      <div className="flex items-baseline justify-between gap-4 border-b border-[#332820] pb-2">
+                      <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-[#332820] pb-2">
                         <p className="font-display text-base font-bold text-[#f0ebe3]">{e.name}</p>
                         <p className="text-xs font-semibold text-accent">{e.years}</p>
                       </div>
@@ -153,10 +172,10 @@ export default function About() {
       </section>
 
       {/* ---------- CHESS (the main thing) ---------- */}
-      <section className="border-b border-white/10">
+      <section id="chess-pathway" className="scroll-mt-24 border-b border-white/10">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
           <Reveal>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 rounded-3xl border border-[#332820] bg-[#16120e]/90 backdrop-blur-md p-6 shadow-md sm:p-10">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 rounded-3xl border border-[#332820] bg-[#16120e]/90 backdrop-blur-md p-6 shadow-md sm:p-10">
               <div className="flex items-center gap-4 sm:gap-5">
                 <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-[#241c16] text-[#f0ebe3] border border-[#332820] shadow-sm">
                   <ChessBoardIcon className="h-6 w-6 sm:h-7 sm:w-7 text-accent" />
@@ -168,14 +187,15 @@ export default function About() {
                   </h2>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <div className="flex flex-wrap gap-3 w-full lg:w-auto">
+                <a href={site.links.fide} target="_blank" rel="noreferrer" className="btn-primary text-center">FIDE Profile ↗</a>
                 <a
                   href={site.links.chesscom}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-primary text-center"
                 >
-                  Chess.com Profile
+                  Chess.com
                 </a>
                 <a
                   href={site.links.lichess}
@@ -183,17 +203,17 @@ export default function About() {
                   rel="noreferrer"
                   className="btn-ghost text-center"
                 >
-                  Lichess Profile
+                  Lichess
                 </a>
               </div>
             </div>
           </Reveal>
 
           {/* Animated ratings counters rolling from 0 */}
-          <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
             {site.chess.stats.map((s, i) => (
               <Reveal key={s.label} delay={i * 70}>
-                <div className="rounded-2xl border border-[#332820] bg-[#16120e]/90 backdrop-blur-md p-6 shadow-xs transition-all hover:border-accent hover:shadow-[0_8px_24px_rgba(198,161,91,0.2)]">
+                <div className="rounded-2xl border border-[#332820] bg-[#16120e]/90 backdrop-blur-md p-4 sm:p-6 shadow-xs transition-all hover:border-accent hover:shadow-[0_8px_24px_rgba(198,161,91,0.2)]">
                   <p className="font-display text-3xl font-bold tracking-tight text-[#f0ebe3] sm:text-4xl">
                     <Counter value={s.value || "—"} />
                   </p>
@@ -243,77 +263,39 @@ export default function About() {
             </div>
           </Reveal>
 
-          {/* Interactive Sideways Showcase */}
           <Reveal delay={100}>
-            <div
-              ref={carouselRef}
-              className="mt-10 overflow-hidden rounded-3xl border border-[#332820] bg-[#16120e] shadow-2xl cursor-ew-resize"
-            >
-              <div className="grid lg:grid-cols-[1.2fr_0.8fr]">
-                {/* Photo showcase with click to open lightbox */}
-                <div
-                  onClick={() => setSelectedPhoto(currentItem)}
-                  className="group relative aspect-[4/3] cursor-pointer overflow-hidden bg-black lg:aspect-auto lg:min-h-[420px]"
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={currentItem.photo}
-                      src={currentItem.photo}
-                      alt={currentItem.title}
-                      initial={{ opacity: 0, scale: 0.96 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.04 }}
-                      transition={{ duration: 0.35 }}
-                      className="h-full w-full object-cover"
-                    />
-                  </AnimatePresence>
-
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/30">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-black opacity-0 shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:opacity-100">
-                      ↗
-                    </span>
-                  </div>
+            <div className="mt-8 overflow-hidden rounded-3xl border border-line bg-surface" role="region" aria-roledescription="carousel" aria-label="Selected achievements" tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.target !== event.currentTarget) return;
+                if (event.key === "ArrowRight") { event.preventDefault(); handleNext(); }
+                if (event.key === "ArrowLeft") { event.preventDefault(); handlePrev(); }
+              }}
+              onTouchStart={(event) => { touchStart.current = event.touches[0].clientX; }}
+              onTouchEnd={(event) => {
+                if (touchStart.current === null) return;
+                const distance = touchStart.current - event.changedTouches[0].clientX;
+                if (Math.abs(distance) > 50) distance > 0 ? handleNext() : handlePrev();
+                touchStart.current = null;
+              }}>
+              <div className="grid md:grid-cols-[1.1fr_1fr]">
+                <button type="button" onClick={() => setIsPhotoOpen(true)} aria-label={`View full photo: ${currentItem.title}`} className="group relative aspect-[4/3] overflow-hidden bg-[#0e0b09] focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-[-4px]">
+                  <motion.img key={currentItem.photo} src={currentItem.photo} alt={currentItem.title} initial={{ opacity: reducedMotion ? 1 : 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }} className="h-full w-full object-contain p-3 transition-transform duration-300 group-hover:scale-[1.03]" />
+                  <span className="absolute bottom-4 right-4 rounded-full border border-white/20 bg-black/75 px-4 py-2 text-xs text-white">View full photo ↗</span>
+                </button>
+                <div className="flex flex-col justify-center border-t border-line p-7 md:border-l md:border-t-0 sm:p-9" aria-live="polite" aria-atomic="true">
+                  <p className="font-mono text-xs text-accent">{String(activePhotoIdx + 1).padStart(2, "0")} / {String(achievements.length).padStart(2, "0")}</p>
+                  <p className="mt-6 text-xs uppercase tracking-widest text-soft">{currentItem.tag}</p>
+                  <h3 className="mt-3 font-display text-2xl font-bold text-ink sm:text-3xl">{currentItem.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-soft">{currentItem.detail}</p>
                 </div>
-
-                {/* Description updating sideways */}
-                <div className="flex flex-col justify-between p-8 sm:p-10">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentItem.title}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <span className="inline-block rounded-full bg-accent/20 px-3 py-1 text-xs font-bold text-accent">
-                        {currentItem.tag}
-                      </span>
-                      <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-[#f0ebe3] sm:text-3xl">
-                        {currentItem.title}
-                      </h3>
-                      <p className="mt-4 text-base leading-relaxed text-[#a39a8e]">
-                        {currentItem.detail}
-                      </p>
-                    </motion.div>
-                  </AnimatePresence>
-
-                  <div className="mt-8 flex items-center justify-between border-t border-[#332820] pt-6">
-                    {/* Thumbnail dots */}
-                    <div className="flex gap-2">
-                      {achievements.map((a, i) => (
-                        <button
-                          key={a.title}
-                          type="button"
-                          onClick={() => setActivePhotoIdx(i)}
-                          className={`h-2.5 rounded-full transition-all duration-300 ${
-                            i === activePhotoIdx ? "w-8 bg-accent" : "w-2.5 bg-[#332820] hover:bg-[#a39a8e]"
-                          }`}
-                          aria-label={`Go to slide ${i + 1}`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
+              </div>
+              <div className="grid grid-cols-2 border-t border-line sm:grid-cols-3">
+                {achievements.map((item, index) => (
+                  <button key={item.title} type="button" onClick={() => setActivePhotoIdx(index)} aria-pressed={activePhotoIdx === index} className={`flex min-h-20 items-center gap-3 border-b border-r border-line p-3 text-left transition-colors focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-[-4px] sm:p-4 ${activePhotoIdx === index ? "bg-accent/10 text-accent" : "text-soft hover:bg-white/5 hover:text-ink"}`}>
+                    <img src={item.photo} alt="" loading="lazy" className={`h-11 w-11 shrink-0 rounded-lg object-cover ${activePhotoIdx === index ? "ring-1 ring-accent" : "opacity-65"}`} />
+                    <span className="text-xs font-medium leading-relaxed">{item.title}</span>
+                  </button>
+                ))}
               </div>
             </div>
           </Reveal>

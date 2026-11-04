@@ -9,7 +9,7 @@ export default function Home() {
     <>
       {/* ---------- HERO ---------- */}
       <section className="relative overflow-hidden border-b border-[#332820]/70">
-        <div className="mx-auto flex min-h-[calc(100vh-4.5rem)] max-w-6xl flex-col justify-center px-6 py-12 sm:py-16">
+        <div className="mx-auto flex min-h-[calc(100dvh-4.5rem)] max-w-6xl flex-col justify-center px-6 py-12 sm:py-16">
           <div className="grid w-full items-center gap-10 lg:grid-cols-[1.1fr_1.25fr] lg:gap-12">
             <div>
               <Reveal>

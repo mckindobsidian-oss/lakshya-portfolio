@@ -66,89 +66,45 @@ export default function Contact() {
     setTimeout(() => setToastMessage(null), 2200);
   };
 
-  const handleCopy = (value: string, label: string) => {
-    navigator.clipboard.writeText(value);
-    showToast(`Copied ${label} to clipboard!`);
+  const handleCopy = async (value: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      showToast(`Copied ${label} to clipboard!`);
+    } catch {
+      showToast("Copy failed. Please select and copy the email address.");
+    }
   };
 
-  // sends the message straight to Web3Forms — TEMPORARY DEBUG BUILD v2
   const sendEmail = async (e: FormEvent) => {
     e.preventDefault();
-    setStatus("sending");
-
-    const accessKey = site.web3forms.accessKey;
-    const endpoint = "https://api.web3forms.com/submit";
-
-    console.log("=== Web3Forms Debug v2 ===");
-    console.log("Endpoint:", endpoint);
-    console.log("Access key exists:", Boolean(accessKey));
-    console.log("Access key length:", accessKey?.length ?? 0);
-    console.log("Access key type:", typeof accessKey);
-    console.log("Access key first 4 chars:", accessKey?.slice(0, 4));
-
-    // Log payload field metadata (never log actual values)
+    if (status === "sending") return;
     const nameVal = name.trim();
-    const emailVal = email.trim();
     const messageVal = message.trim();
-    console.log("--- Payload fields ---");
-    console.log("name exists:", Boolean(nameVal), "| length:", nameVal.length);
-    console.log("email exists:", Boolean(emailVal), "| length:", emailVal.length);
-    console.log("email looks valid:", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal));
-    console.log("message exists:", Boolean(messageVal), "| length:", messageVal.length);
-
+    if (!nameVal || !messageVal) {
+      setStatus("error");
+      return;
+    }
+    setStatus("sending");
     try {
       const formData = new FormData();
-      formData.append("access_key", accessKey);
-      formData.append("subject", `Message from ${nameVal || "a visitor"} — ${site.name}`);
+      formData.append("access_key", site.web3forms.accessKey);
+      formData.append("subject", `Message from ${nameVal} — ${site.name}`);
       formData.append("name", nameVal);
-      formData.append("email", emailVal);
+      formData.append("email", email.trim());
       formData.append("message", messageVal);
-      formData.append("from_name", nameVal || "Website visitor");
-      if (emailVal) formData.append("_replyto", emailVal);
+      formData.append("from_name", nameVal);
       formData.append("botcheck", "");
-
-      // Log all FormData keys
-      const keys: string[] = [];
-      formData.forEach((_val, key) => keys.push(key));
-      console.log("FormData keys:", keys);
-
-      console.log("Sending fetch...");
-      const res = await fetch(endpoint, {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData,
       });
-
-      console.log("Web3Forms status:", res.status);
-      console.log("Web3Forms ok:", res.ok);
-      console.log("Web3Forms content-type:", res.headers.get("content-type"));
-
-      const raw = await res.text();
-      console.log("Web3Forms raw response:", raw);
-
-      let data: { success?: boolean; message?: string };
-      try {
-        data = JSON.parse(raw);
-        console.log("Web3Forms parsed JSON:", data);
-      } catch (parseErr) {
-        console.error("Web3Forms JSON parse error:", parseErr);
-        console.error("Raw was not JSON. First 500 chars:", raw.slice(0, 500));
-        setStatus("error");
-        return;
-      }
-
-      if (data.success) {
-        setStatus("sent");
-        setName("");
-        setEmail("");
-        setMessage("");
-      } else {
-        console.warn("Web3Forms returned success=false:", data);
-        setStatus("error");
-      }
-    } catch (err) {
-      console.error("Web3Forms fetch/network error:", err);
-      console.error("Error name:", (err as Error)?.name);
-      console.error("Error message:", (err as Error)?.message);
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error("Submission failed");
+      setStatus("sent");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch {
       setStatus("error");
     }
   };
@@ -177,7 +133,7 @@ export default function Contact() {
             <p className="eyebrow on-photo">Contact</p>
             <h1 className="on-photo mt-5 max-w-3xl font-display text-4xl font-bold tracking-tight sm:text-6xl sm:leading-[1.05]">
               Let's talk.{" "}
-              <span className="rounded-2xl border border-[#332820] bg-accent px-3.5 py-1 text-black font-semibold shadow-2xs">
+              <span className="inline-block mt-2 rounded-2xl border border-[#332820] bg-accent px-3.5 py-1 text-black font-semibold shadow-2xs">
                 Or play a game.
               </span>
             </h1>
@@ -233,9 +189,9 @@ export default function Contact() {
                   <button
                     type="button"
                     onClick={() => handleCopy(site.links.email, "Email")}
-                    className="group inline-flex items-center gap-2 rounded-xl border border-[#332820] bg-[#1e1813] px-4 py-2.5 text-sm font-medium text-[#f0ebe3] transition-all hover:bg-accent hover:text-black hover:border-accent"
+                    className="group inline-flex max-w-full flex-wrap items-center gap-2 rounded-xl border border-[#332820] bg-[#1e1813] px-4 py-2.5 text-sm font-medium text-[#f0ebe3] transition-all hover:bg-accent hover:text-black hover:border-accent"
                   >
-                    <span>{site.links.email}</span>
+                    <span className="min-w-0 break-all">{site.links.email}</span>
                     <span className="text-xs opacity-80 group-hover:opacity-100">📋 Copy</span>
                   </button>
                 </div>

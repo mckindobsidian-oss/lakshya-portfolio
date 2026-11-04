@@ -215,3 +215,52 @@ html.has-custom-cursor * {
   width: 38px;
   height: 38px;
 }
+
+/* Keep narrow grids and long content inside their tracks. */
+main, main :where(.grid > *, .flex > *) { min-width: 0; }
+img, video, iframe { max-width: 100%; }
+button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
+:where(button, a):focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+@keyframes ambient-drift {
+  from { transform: translate3d(-2%, -1%, 0); opacity: 0.15; }
+  to { transform: translate3d(2%, 2%, 0); opacity: 0.35; }
+}
+.ambient-drift { animation: ambient-drift 14s ease-in-out infinite alternate; }
+@media (max-width: 639px) {
+  main section > .px-6, nav.px-6 { padding-left: 1rem; padding-right: 1rem; }
+  main .p-8 { padding: 1.5rem; }
+  input, textarea, select { font-size: 16px !important; }
+  .btn-primary, .btn-ghost { min-height: 44px; white-space: normal; text-align: center; }
+  main :where(h1, h2, h3, p) { overflow-wrap: break-word; }
+}
+@media (pointer: coarse) {
+  html { scroll-behavior: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-drift, .status-live-dot { animation: none; }
+}
+
+/* Warm lamp, floating dust and a closer foreground give the desk depth. */
+.wallpaper-lamplight {
+  background: radial-gradient(ellipse at 94% 8%, #efb45e35, transparent 52%);
+  animation: lamp-breathe 9s ease-in-out infinite alternate;
+}
+.wallpaper-motes span {
+  position: absolute; width: 3px; height: 3px; border-radius: 50%;
+  background: #e9c384; box-shadow: 0 0 8px #d3a65d80;
+  animation: desk-dust 16s ease-in-out infinite; opacity: 0;
+}
+@keyframes lamp-breathe { from { opacity: .35; } to { opacity: .8; } }
+@keyframes desk-dust {
+  0%, 100% { opacity: 0; transform: translate3d(0, 15px, 0); }
+  35% { opacity: .45; }
+  75% { opacity: .15; transform: translate3d(25px, -45px, 0); }
+}
+@media (pointer: coarse) {
+  .wallpaper-foreground { display: none; }
+  .wallpaper-motes span:nth-child(n+5) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wallpaper-lamplight, .wallpaper-motes span { animation: none; }
+}

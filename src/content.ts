@@ -12,6 +12,7 @@ export const site = {
   bio: "A competitive chess player pursuing the International Master title, balancing tournament circuits with deep tactical study, creative writing, and digital strategy on Blockwise.",
 
   links: {
+    fide: "https://ratings.fide.com/profile/100108348",
     youtube: "https://www.youtube.com/@blockwise15",
     email: "lakshyagupta652@gmail.com",
     chesscom: "https://www.chess.com/member/lakshyagupta15",
@@ -26,8 +27,11 @@ export const site = {
 
   chess: {
     goal: "International Master",
+    title: "ACM",
+    titleName: "Arena Candidate Master",
+    worldRating: "1350",
     stats: [
-      { label: "Chess.com Rating", value: "1400" },
+      { label: "Chess.com Rating", value: "1550" },
       { label: "Lichess Rating", value: "1500" },
       { label: "Rated Tournaments", value: "30+" },
       { label: "Peak Rated Win", value: "1800" },
@@ -140,6 +144,13 @@ export const gallery = [
 ];
 
 // ---- MY CREATIONS ----------------------------------------------------------
+export const northProjectLab = {
+  title: "North Project Lab",
+  tag: "Productivity Ecosystem",
+  detail: "A productivity ecosystem I created to bring focus, organization, and purposeful work into one place.",
+  href: "https://northprojectlab.vercel.app",
+};
+
 export const creations = [
   {
     title: "Life Beyond Earth",

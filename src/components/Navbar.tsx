@@ -64,7 +64,7 @@ export default function Navbar() {
         </Link>
 
         {/* desktop tabs with animated layoutId pill */}
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {tabs.map((t) => {
             const active = isActive(pathname, t.to);
             return (
@@ -97,7 +97,7 @@ export default function Navbar() {
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#332820] bg-[#1a1410]/80 text-[#f0ebe3] shadow-xs transition-colors hover:bg-[#261d17] md:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#332820] bg-[#1a1410]/80 text-[#f0ebe3] shadow-xs transition-colors hover:bg-[#261d17] lg:hidden"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
             {open ? (
@@ -116,7 +116,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-x-0 top-16 z-50 border-b border-[#332820] bg-[#130f0c]/98 px-6 py-4 shadow-2xl backdrop-blur-2xl md:hidden"
+              className="absolute inset-x-0 top-16 z-50 border-b border-[#332820] bg-[#130f0c]/98 px-6 py-4 shadow-2xl backdrop-blur-2xl lg:hidden"
             >
               <div className="flex flex-col gap-1.5">
                 {tabs.map((t, idx) => {
