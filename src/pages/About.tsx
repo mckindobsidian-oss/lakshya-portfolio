@@ -108,7 +108,7 @@ export default function About() {
               <div className="rounded-2xl border border-[#332820] bg-[#16120e]/90 p-6 sm:p-8" aria-labelledby="world-chess-rating">
                 <h3 id="world-chess-rating" className="eyebrow">World Chess Rating</h3>
                 <p className="mt-4 font-display text-4xl font-bold text-accent"><Counter value={site.chess.worldRating} /></p>
-                <p className="mt-3 text-sm text-soft">Along the pathway to {site.chess.goal}</p>
+                <a href={site.links.worldchess} target="_blank" rel="noreferrer" className="mt-3 inline-block text-sm text-soft underline underline-offset-4 hover:text-accent">Lakshya Gupta · Profile 1338217 ↗</a>
               </div>
             </div>
           </Reveal>
@@ -195,7 +195,7 @@ export default function About() {
                   rel="noreferrer"
                   className="btn-primary text-center"
                 >
-                  Chess.com
+                  Chess.com · notlkshya_15
                 </a>
                 <a
                   href={site.links.lichess}

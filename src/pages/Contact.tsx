@@ -36,7 +36,7 @@ const channels = [
       />
     ),
     title: "Chess.com",
-    sub: "lakshyagupta15",
+    sub: "notlkshya_15",
     href: site.links.chesscom,
     external: true,
   },
@@ -336,7 +336,7 @@ export default function Contact() {
                 rel="noreferrer"
                 className="font-semibold text-[#f0ebe3] underline underline-offset-4 hover:text-accent"
               >
-                chess.com/lakshyagupta15
+                chess.com/notlkshya_15
               </a>
               <span>— I don't lose easily.</span>
             </div>

@@ -15,7 +15,8 @@ export const site = {
     fide: "https://ratings.fide.com/profile/100108348",
     youtube: "https://www.youtube.com/@blockwise15",
     email: "lakshyagupta652@gmail.com",
-    chesscom: "https://www.chess.com/member/lakshyagupta15",
+    chesscom: "https://www.chess.com/member/notlkshya_15",
+    worldchess: "https://worldchess.com/profile/1338217/ratings",
     lichess: "https://lichess.org/@/lakshyagupta15",
   },
 
