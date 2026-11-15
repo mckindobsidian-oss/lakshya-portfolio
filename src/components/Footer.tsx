@@ -12,7 +12,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative z-10 border-t border-[#332820]/70 bg-[#130f0c] px-6 py-8">
+    <footer className="relative z-10 border-t border-[#332820]/70 bg-[#130f0c] px-6 pb-[max(2rem,env(safe-area-inset-bottom))] pt-8">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 text-xs font-medium uppercase tracking-[0.18em] text-[#a39a8e] sm:flex-row">
         <p>© 2026 {site.name.toUpperCase()}</p>
         <p className="text-center text-[#f0ebe3]">{site.footerMotto}</p>

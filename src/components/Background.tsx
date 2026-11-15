@@ -16,7 +16,7 @@ export default function Background() {
   const glowY = useTransform(y, [-8, 8], ["25%", "75%"]);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion || window.matchMedia("(pointer: coarse)").matches) return;
     const move = (event: PointerEvent) => {
       pointerX.set((event.clientX / window.innerWidth - 0.5) * 20);
       pointerY.set((event.clientY / window.innerHeight - 0.5) * 16);

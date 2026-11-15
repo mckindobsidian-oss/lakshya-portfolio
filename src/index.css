@@ -22,11 +22,18 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   @apply overflow-x-hidden bg-[#130f0c] font-sans text-[#f0ebe3] antialiased;
   text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-width: 0;
+  min-height: 100dvh;
+  overflow-x: clip;
 }
 
 /* warm gold text selection */
@@ -229,6 +236,7 @@ button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 639px) {
   main section > .px-6, nav.px-6 { padding-left: 1rem; padding-right: 1rem; }
   main .p-8 { padding: 1.5rem; }
+  main form.p-8 { padding: 1.25rem; }
   input, textarea, select { font-size: 16px !important; }
   .btn-primary, .btn-ghost { min-height: 44px; white-space: normal; text-align: center; }
   main :where(h1, h2, h3, p) { overflow-wrap: break-word; }

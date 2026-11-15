@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Reveal from "../components/Reveal";
 import {
   CheckIcon,
+  ExternalIcon,
   LichessIcon,
   MailIcon,
   YouTubeBrandIcon,
@@ -118,7 +119,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-2xl bg-[#130f0c] px-4 py-2.5 text-xs font-semibold text-[#f0ebe3] shadow-2xl backdrop-blur-md border border-[#332820]"
+            className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-4 right-4 z-50 flex items-center justify-center gap-2 rounded-2xl border border-[#332820] bg-[#130f0c] px-4 py-2.5 text-xs font-semibold text-[#f0ebe3] shadow-2xl backdrop-blur-md sm:left-auto sm:right-6"
           >
             <CheckIcon className="h-4 w-4 text-accent" />
             <span>{toastMessage}</span>
@@ -128,35 +129,35 @@ export default function Contact() {
 
       {/* ---------- STATEMENT HERO ---------- */}
       <section className="border-b border-white/10">
-        <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+        <div className="mx-auto max-w-5xl px-6 py-14 sm:py-28">
           <Reveal>
             <p className="eyebrow on-photo">Contact</p>
-            <h1 className="on-photo mt-5 max-w-3xl font-display text-4xl font-bold tracking-tight sm:text-6xl sm:leading-[1.05]">
+            <h1 className="on-photo mt-4 max-w-3xl font-display text-4xl font-bold leading-[1.05] tracking-tight sm:mt-5 sm:text-6xl">
               Let's talk.{" "}
-              <span className="inline-block mt-2 rounded-2xl border border-[#332820] bg-accent px-3.5 py-1 text-black font-semibold shadow-2xs">
+              <span className="mt-3 inline-block max-w-full whitespace-nowrap rounded-2xl border border-[#332820] bg-accent px-3 py-1 text-[0.82em] font-semibold leading-tight text-black shadow-2xs sm:mt-2 sm:px-3.5 sm:text-[1em]">
                 Or play a game.
               </span>
             </h1>
-            <p className="on-photo-soft mt-6 max-w-2xl text-lg leading-relaxed">
-              Chess challenges, collaboration ideas, or inquiries — I read everything. Reach me directly via email or connect through any of the platforms below.
+            <p className="on-photo-soft mt-5 max-w-2xl text-base leading-relaxed sm:mt-6 sm:text-lg">
+              Chess challenges, collaborations, or questions. Reach me by email or on any of the platforms below.
             </p>
           </Reveal>
 
           {/* Direct quick channel pills */}
           <Reveal delay={120}>
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:flex sm:flex-wrap">
               {channels.map((c) => (
                 <a
                   key={c.title}
                   href={c.href}
                   target={c.external ? "_blank" : undefined}
                   rel={c.external ? "noreferrer" : undefined}
-                  className="group inline-flex items-center gap-2.5 rounded-full border border-[#332820] bg-[#1a1410]/80 py-2.5 pl-3.5 pr-5 text-sm font-medium text-[#f0ebe3] shadow-2xs backdrop-blur-md transition-all duration-200 hover:border-accent hover:bg-[#221a14]"
+                  className="group inline-flex min-w-0 items-center gap-2 rounded-full border border-[#332820] bg-[#1a1410]/80 py-2 pl-2.5 pr-3 text-xs font-medium text-[#f0ebe3] shadow-2xs backdrop-blur-md transition-all duration-200 hover:border-accent hover:bg-[#221a14] sm:gap-2.5 sm:py-2.5 sm:pl-3.5 sm:pr-5 sm:text-sm"
                 >
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#241c16] text-[#f0ebe3] border border-[#332820] shadow-xs transition-colors duration-200 group-hover:bg-accent group-hover:text-black">
                     {c.icon}
                   </span>
-                  <span>{c.title}</span>
+                  <span className="truncate">{c.title}</span>
                 </a>
               ))}
             </div>
@@ -166,33 +167,33 @@ export default function Contact() {
 
       {/* ---------- EMAIL FORM (Warm Dark Panel + Web3Forms) ---------- */}
       <section className="border-b border-white/10">
-        <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl px-6 py-12 sm:py-24">
           <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
             <Reveal>
-              <div className="flex h-full flex-col justify-between rounded-3xl bg-[#16120e] p-8 text-[#f0ebe3] shadow-xl border border-[#332820] sm:p-10 transition-colors hover:border-accent/50">
+              <div className="flex h-full w-full min-w-0 flex-col justify-between overflow-hidden rounded-3xl border border-[#332820] bg-[#16120e] p-8 text-[#f0ebe3] shadow-xl transition-colors hover:border-accent/50 sm:p-10">
                 <div>
                   <div className="flex items-center justify-between">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
                       Email me
                     </p>
-                    <span className="text-accent text-base">✦</span>
+                    <span aria-hidden="true" className="text-base text-accent">✦</span>
                   </div>
                   <h2 className="mt-6 font-serif text-3xl leading-snug text-[#f0ebe3] sm:text-4xl">
                     One message away.
                   </h2>
                   <p className="mt-5 leading-relaxed text-[#a39a8e]">
                     Write a few lines and they'll land straight in my inbox. No forms lost in
-                    space — I actually read and reply.
+                    space. I actually read and reply.
                   </p>
                 </div>
                 <div className="mt-10">
                   <button
                     type="button"
                     onClick={() => handleCopy(site.links.email, "Email")}
-                    className="group inline-flex max-w-full flex-wrap items-center gap-2 rounded-xl border border-[#332820] bg-[#1e1813] px-4 py-2.5 text-sm font-medium text-[#f0ebe3] transition-all hover:bg-accent hover:text-black hover:border-accent"
+                    className="group flex w-full min-w-0 items-center justify-between gap-2 rounded-xl border border-[#332820] bg-[#1e1813] px-3 py-3 text-xs font-medium text-[#f0ebe3] transition-all hover:border-accent hover:bg-accent hover:text-black sm:px-4 sm:text-sm"
                   >
-                    <span className="min-w-0 break-all">{site.links.email}</span>
-                    <span className="text-xs opacity-80 group-hover:opacity-100">📋 Copy</span>
+                    <span className="min-w-0 truncate">{site.links.email}</span>
+                    <span className="shrink-0 text-xs opacity-80 group-hover:opacity-100">Copy</span>
                   </button>
                 </div>
               </div>
@@ -226,7 +227,7 @@ export default function Contact() {
               ) : (
                 <form
                   onSubmit={sendEmail}
-                  className="flex h-full flex-col gap-5 rounded-3xl border border-[#332820] bg-[#16120e] p-8 shadow-xl sm:p-10"
+                  className="flex h-full w-full min-w-0 flex-col gap-4 overflow-hidden rounded-3xl border border-[#332820] bg-[#16120e] p-8 shadow-xl sm:gap-5 sm:p-10"
                 >
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
@@ -275,7 +276,7 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={status === "sending"}
-                      className="btn-primary"
+                      className="btn-primary w-full sm:w-auto"
                     >
                       <MailIcon className="h-4 w-4" />
                       <span>{status === "sending" ? "Sending…" : "Send message"}</span>
@@ -283,7 +284,7 @@ export default function Contact() {
 
                     {status === "error" && (
                       <p className="text-xs font-medium text-red-400">
-                        Something went wrong — please try again.
+                        Check the required fields or try again.
                       </p>
                     )}
                   </div>
@@ -296,49 +297,42 @@ export default function Contact() {
 
       {/* ---------- CHANNELS ---------- */}
       <section>
-        <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+        <div className="mx-auto max-w-5xl px-6 py-12 sm:py-20">
           <Reveal>
             <p className="eyebrow on-photo">Elsewhere</p>
             <h2 className="h2 on-photo">Pick your platform</h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
             {channels.map((c, i) => (
               <Reveal key={c.title} delay={i * 50}>
                 <a
                   href={c.href}
                   target={c.external ? "_blank" : undefined}
                   rel={c.external ? "noreferrer" : undefined}
-                  className="group flex h-full flex-col justify-between rounded-3xl border border-[#332820] bg-[#16120e] p-6 shadow-xs transition-all duration-200 hover:border-accent hover:shadow-xl"
+                  className="group relative flex h-full min-w-0 items-center gap-4 rounded-3xl border border-[#332820] bg-[#16120e] p-5 shadow-xs transition-all duration-200 hover:border-accent hover:shadow-xl sm:flex-col sm:items-stretch sm:justify-between sm:gap-0 sm:p-6"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#241c16] text-[#f0ebe3] border border-[#332820] transition-colors duration-200 group-hover:bg-accent group-hover:text-black">
-                      {c.icon}
-                    </span>
-                    <span className="text-xs font-mono text-[#a39a8e] group-hover:text-accent">↗</span>
-                  </div>
-                  <div className="mt-8">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#332820] bg-[#241c16] text-[#f0ebe3] transition-colors duration-200 group-hover:bg-accent group-hover:text-black">
+                    {c.icon}
+                  </span>
+                  <div className="min-w-0 flex-1 sm:mt-8 sm:flex-none">
                     <h3 className="font-display text-lg font-bold text-[#f0ebe3]">{c.title}</h3>
                     <p className="mt-1 truncate text-sm text-[#a39a8e]">{c.sub}</p>
                   </div>
+                  <ExternalIcon className="ml-auto h-4 w-4 shrink-0 text-[#a39a8e] group-hover:text-accent sm:absolute sm:right-6 sm:top-6" />
                 </a>
               </Reveal>
             ))}
           </div>
 
           <Reveal delay={120}>
-            <div className="mt-12 flex flex-wrap items-center gap-2 text-sm text-[#a39a8e]">
-              <span className="font-display text-2xl text-[#f0ebe3]">♞</span>
+            <div className="mt-10 grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 text-sm text-[#a39a8e] sm:mt-12">
+              <span aria-hidden="true" className="row-span-3 font-display text-2xl text-[#f0ebe3]">♞</span>
               <span>Challenge me on</span>
-              <a
-                href={site.links.chesscom}
-                target="_blank"
-                rel="noreferrer"
-                className="font-semibold text-[#f0ebe3] underline underline-offset-4 hover:text-accent"
-              >
+              <a href={site.links.chesscom} target="_blank" rel="noreferrer" className="mt-1 w-fit max-w-full truncate font-semibold text-[#f0ebe3] underline underline-offset-4 hover:text-accent">
                 chess.com/notlkshya_15
               </a>
-              <span>— I don't lose easily.</span>
+              <span className="mt-1">I don't lose easily.</span>
             </div>
           </Reveal>
         </div>
