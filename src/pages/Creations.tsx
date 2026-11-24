@@ -1,6 +1,7 @@
 import Reveal from "../components/Reveal";
 import { ExternalIcon } from "../components/Icons";
-import { creations, northProjectLab } from "../content";
+import { images } from "../assets/images";
+import { creations, mobProject } from "../content";
 
 export default function Creations() {
   const book = creations[0];
@@ -25,16 +26,20 @@ export default function Creations() {
           <Reveal delay={80}>
             <article className="mt-10 overflow-hidden rounded-3xl border border-line bg-surface">
               <div className="grid md:grid-cols-2">
-                <div className="relative flex min-h-60 items-center justify-center overflow-hidden border-b border-line bg-[#1e1813] p-8 md:border-b-0 md:border-r">
-                  <div aria-hidden="true" className="absolute inset-0 opacity-20" style={{ backgroundImage: "linear-gradient(#C6A15B33 1px, transparent 1px), linear-gradient(90deg, #C6A15B33 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
-                  <div className="relative text-center"><p className="font-mono text-xs tracking-[0.3em] text-accent">NORTH PROJECT LAB</p><p className="mt-5 font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">Make room<br />for focus.</p><p className="mt-5 text-xs text-soft">A productivity ecosystem by Lakshya Gupta</p></div>
+                <div className="relative min-h-72 overflow-hidden border-b border-line bg-[#101a15] md:border-b-0 md:border-r">
+                  <img src={images.mobRibbonHero} alt="Glossy green Mob ribbon mark" className="absolute inset-0 h-full w-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#101a15]/95 via-[#101a15]/30 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 p-6 sm:p-8">
+                    <img src={images.mobMark} alt="" className="h-12 w-12 rounded-xl shadow-lg" />
+                    <div><p className="font-display text-2xl font-bold text-white">Mob</p><p className="text-sm text-white/70">Make time for what matters</p></div>
+                  </div>
                 </div>
                 <div className="flex flex-col items-start justify-center p-6 sm:p-10">
-                  <p className="eyebrow">{northProjectLab.tag}</p>
-                  <h2 className="mt-4 font-display text-3xl font-bold text-ink">{northProjectLab.title}</h2>
-                  <p className="mt-4 leading-relaxed text-soft">{northProjectLab.detail}</p>
-                  <a href={northProjectLab.href} target="_blank" rel="noreferrer" className="btn-primary mt-7">Explore North Project Lab <ExternalIcon className="h-4 w-4 shrink-0" /></a>
-                  <p className="mt-3 text-xs text-soft">northprojectlab.vercel.app</p>
+                  <p className="eyebrow">{mobProject.tag}</p>
+                  <h2 className="mt-4 font-display text-3xl font-bold text-ink">{mobProject.title}</h2>
+                  <p className="mt-4 leading-relaxed text-soft">{mobProject.detail}</p>
+                  <a href={mobProject.href} target="_blank" rel="noreferrer" className="btn-primary mt-7">Explore Mob <ExternalIcon className="h-4 w-4 shrink-0" /></a>
+                  <p className="mt-3 text-xs text-soft">moblabs.vercel.app</p>
                 </div>
               </div>
             </article>

@@ -226,6 +226,10 @@ html.has-custom-cursor * {
 /* Keep narrow grids and long content inside their tracks. */
 main, main :where(.grid > *, .flex > *) { min-width: 0; }
 img, video, iframe { max-width: 100%; }
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
 button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
 :where(button, a):focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
 @keyframes ambient-drift {

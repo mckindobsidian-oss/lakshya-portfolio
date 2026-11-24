@@ -145,11 +145,11 @@ export const gallery = [
 ];
 
 // ---- MY CREATIONS ----------------------------------------------------------
-export const northProjectLab = {
-  title: "North Project Lab",
+export const mobProject = {
+  title: "Mob",
   tag: "Productivity Ecosystem",
-  detail: "A productivity ecosystem I created to bring focus, organization, and purposeful work into one place.",
-  href: "https://northprojectlab.vercel.app",
+  detail: "Plan tasks, focus with a Pomodoro timer, and set limits on distractions across web, Windows, Android, Chrome, and Edge.",
+  href: "https://moblabs.vercel.app/",
 };
 
 export const creations = [

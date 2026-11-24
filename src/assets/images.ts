@@ -27,6 +27,8 @@ import museumSelfie from "./photos/museum-selfie.jpg";
 import aboutChessDesk from "./photos/about-chess-desk.jpg";
 import aboutBanner from "./photos/about-banner.png";
 import bookMockup from "./photos/book-mockup.jpg";
+import mobMark from "./photos/mob-mark.svg";
+import mobRibbonHero from "./photos/mob-ribbon-hero.jpg";
 
 export const images = {
   amerFort, albertHall, cityPalace, jalMahal, acmCertificate,
@@ -52,4 +54,6 @@ export const images = {
   sarovarBridge,
   sunsetTemple,
   museumSelfie,
+  mobMark,
+  mobRibbonHero,
 };
